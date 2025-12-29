@@ -54,7 +54,7 @@ export default function AuthForm() {
     }
     setIsValidEmail(true)
     setIsLoading(true)
-    
+
     api.post(`citizens/authenticate`, {email: email, popup_slug: popupSlug ?? null, world_redirect: MiniKit.isInstalled(), signature: worldData.signature, world_address: worldData.address}).then((e) => {
       if(e.status === 200) {
         setOpen(false)
@@ -84,7 +84,7 @@ export default function AuthForm() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://simplefi.s3.us-east-2.amazonaws.com/edge-patagonia-island-min.png"
+            src="/logo.jpg"
             alt="EdgeCity illustration"
             style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0.5rem'}}
           />

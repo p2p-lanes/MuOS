@@ -6,7 +6,6 @@ import { useState } from "react"
 import { ProfileData } from "@/types/StatsSocialLayer"
 import { useEffect } from "react"
 import { Skeleton } from "../ui/skeleton"
-import { CalendarCheck2, CalendarPlus } from "lucide-react"
 
 const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
   const { getEventsFromEmail, eventsLoading, getProfileFromEmail, profileLoading } = useSocialLayer()
@@ -14,7 +13,7 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
   const [profile, setProfile] = useState<ProfileData | null>(null)
 
   const currentDate = new Date()
-  
+
   // Filter only popups that have already ended
   const completedPopups = userData?.popups?.filter(popup => {
     const endDate = new Date(popup.end_date)
@@ -23,11 +22,11 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
 
   const extraDays = completedPopups.reduce((acc, popup) => {
     const popupIdentifier = `${popup.popup_name} ${popup.location || ''}`
-    
+
     if (popupIdentifier.includes("Austin")) return acc + 8
     if (popupIdentifier.includes("South Africa")) return acc + 12
     if (popupIdentifier.includes("Bhutan")) return acc + 10
-    
+
     return acc
   }, 0)
 
@@ -37,7 +36,7 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
     if (!userData) return
 
     const emails = [userData.primary_email, userData.secondary_email].filter((e): e is string => !!e && e !== "")
-    
+
     if (emails.length === 0) return
 
     const fetchEvents = async () => {
@@ -46,7 +45,7 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
     }
     const fetchProfile = async () => {
       const profiles = await getProfileFromEmail(emails)
-      
+
       const allEvents = profiles.reduce((acc: any[], curr: any) => {
         return [...acc, ...(curr.events || [])]
       }, [])
@@ -119,8 +118,8 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900 truncate">{event.title}</p>
                   <p className="text-xs text-gray-500 truncate">
-                    {event.location && event.location.length > 30 
-                      ? `${event.location.substring(0, 30)}...` 
+                    {event.location && event.location.length > 30
+                      ? `${event.location.substring(0, 30)}...`
                       : event.location || 'Location not specified'}
                   </p>
                 </div>
@@ -132,7 +131,7 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
           </div>
         </Card>
       </Card>
-      
+
       <TopMatchStats userData={userData} eventsLoading={eventsLoading} events={events} />
     </div>
   )

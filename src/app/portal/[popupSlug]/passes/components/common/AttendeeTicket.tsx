@@ -16,6 +16,7 @@ import QRcode from "./QRcode"
 import { useApplication } from "@/providers/applicationProvider"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 const getCategoryPriority = (category: string): number => {
   const normalized = category.toLowerCase()
@@ -105,7 +106,7 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
         <div className="w-full rounded-3xl border border-gray-200 h-full xl:grid xl:grid-cols-[1fr_2px_2fr] bg-white">
 
           <div className="relative flex flex-col p-6 overflow-hidden h-full">
-            <div 
+            <div
               className="absolute inset-0 z-0 rounded-3xl"
               style={{
                 background: `linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.8) 20%, #FFFFFF 90%), url(${city?.image_url})`,
@@ -123,7 +124,14 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2 xl:order-1">
-                  <EdgeLand/>
+                  <Image
+                    src="/icon.png"
+                    alt="EdgeCity Logo"
+                    width={20}
+                    height={20}
+                    priority
+                    className="flex-shrink-0"
+                  />
                   <p className="text-sm font-medium">{city?.name}</p>
                 </div>
               </div>
@@ -135,7 +143,7 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
 
           <div className="border-r-2 border-dashed border-gray-200 self-stretch relative">
             <div className="absolute -top-[23px] -left-[23px] w-[48px] h-[46px] bg-neutral-100 rounded-3xl border border-gray-200"></div>
-            <div className="absolute max-xl:-top-[23px] max-xl:-right-[23px] xl:-bottom-[23px] xl:-right-auto xl:-left-[23px] w-[48px] h-[46px] bg-neutral-100 rounded-3xl border border-gray-200"></div> 
+            <div className="absolute max-xl:-top-[23px] max-xl:-right-[23px] xl:-bottom-[23px] xl:-right-auto xl:-left-[23px] w-[48px] h-[46px] bg-neutral-100 rounded-3xl border border-gray-200"></div>
           </div>
 
           <div className="flex flex-col p-8 gap-2 xl:pr-10">
@@ -147,8 +155,8 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
               <div className="flex w-full h-full justify-center items-center p-4">
                 <p className="text-sm font-medium text-neutral-500 text-center">
                   You do not yet have any passes for {city?.name}, please go to{" "}
-                  <span 
-                    onClick={onSwitchToBuy} 
+                  <span
+                    onClick={onSwitchToBuy}
                     className="text-primary hover:underline cursor-pointer font-semibold"
                   >
                     Buy Passes
@@ -179,9 +187,9 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
                               {index === firstDayIndexCommon && hasDayInCommon && !isDayCheckout && (
                                 <Separator className="my-1" />
                               )}
-                              <Product 
-                                product={product} 
-                                defaultDisabled={!toggleProduct} 
+                              <Product
+                                product={product}
+                                defaultDisabled={!toggleProduct}
                                 hasMonthPurchased={hasMonthPurchased}
                                 onClick={toggleProduct ? (attendeeId, product) => toggleProduct(attendeeId ?? 0, product) : () => {}}
                               />
@@ -193,7 +201,7 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
                         })}
                       </div>
                       <p className="text-sm font-medium text-neutral-500 text-right mt-2">ID Required at check-in *</p>
-                        
+
                     </CollapsibleContent>
                   </Collapsible>
                 )}
@@ -218,9 +226,9 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
                               {index === firstDayIndexCommon && hasDayInCommon && !isDayCheckout && (
                                 <Separator className="my-1" />
                               )}
-                              <Product 
-                                product={product} 
-                                defaultDisabled={!toggleProduct} 
+                              <Product
+                                product={product}
+                                defaultDisabled={!toggleProduct}
                                 hasMonthPurchased={hasMonthPurchased}
                                 onClick={toggleProduct ? (attendeeId, product) => toggleProduct(attendeeId ?? 0, product) : () => {}}
                               />
@@ -247,9 +255,9 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
             {
               hasPurchased && (
                 <div className="flex w-full justify-end">
-                  <Button 
-                    variant="ghost" 
-                    className="flex items-center gap-2 p-2" 
+                  <Button
+                    variant="ghost"
+                    className="flex items-center gap-2 p-2"
                     onClick={handleOpenQrModal}
                     aria-label="Show check-in code"
                   >

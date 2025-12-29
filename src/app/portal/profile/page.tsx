@@ -112,7 +112,7 @@ export default function ProfileContent() {
         </Card>
       </div>
     )
-  } 
+  }
 
   if(isLoading) {
     return (
@@ -128,27 +128,26 @@ export default function ProfileContent() {
       <HeaderProfile />
 
       {/* Profile Content */}
-      <div className="flex-1 p-6 bg-gray-50">
+      <div className="flex-1 p-6 bg-neutral-100">
         <div className="max-w-5xl mx-auto space-y-6">
           {/* Banner Edge Wrapped */}
-          <BannerEdgeWrapped 
+          <BannerEdgeWrapped
             edgeMappedSent={userData?.edge_mapped_sent}
             onImageGenerated={handleEdgeMappedGenerated}
             showBanner={(userData?.total_days && userData?.total_days > 0) ? true : false}
           />
-          
-          <MergeEmails />
+
+          {/* <MergeEmails /> */}
 
           <HumanForm userData={userData} isEditing={isEditing} setIsEditing={setIsEditing} handleSave={handleSave} handleCancel={handleCancel} editForm={editForm} setEditForm={setEditForm} />
 
           <StatsCards userData={userData} />
 
-
           <ReferralLinks referralCount={userData?.referral_count ?? 0} />
 
           <PopupsHistory popups={userData?.popups ?? []} />
-          
-          <ProfileStats userData={userData} />
+
+          {/* <ProfileStats userData={userData} /> */}
 
         </div>
       </div>

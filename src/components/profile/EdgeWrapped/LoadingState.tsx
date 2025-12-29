@@ -20,15 +20,15 @@ export const LoadingState = ({ messageIndex }: LoadingStateProps) => {
       {/* Icon Animation */}
       <div className="relative flex items-center justify-center h-32 w-32">
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1, 1.1, 1],
             rotate: [0, 5, -5, 0],
             opacity: [0.5, 0.8, 0.5]
           }}
-          transition={{ 
+          transition={{
             duration: 3,
             repeat: Infinity,
-            ease: "easeInOut" 
+            ease: "easeInOut"
           }}
           className="absolute inset-0 bg-gradient-to-tr from-purple-200 to-blue-200 rounded-full blur-2xl"
         />
@@ -49,7 +49,7 @@ export const LoadingState = ({ messageIndex }: LoadingStateProps) => {
         <h3 className="text-xl font-bold text-black tracking-wide uppercase">
           Construction in Progress
         </h3>
-        
+
         {/* Message Cycler */}
         <div className="h-6 overflow-hidden relative w-full flex justify-center">
           <AnimatePresence mode="wait">

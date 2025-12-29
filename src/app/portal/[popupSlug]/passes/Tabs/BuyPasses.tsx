@@ -21,15 +21,15 @@ import { useSearchParams } from "next/navigation"
 // Función temporal para convertir markdown básico a HTML
 const parseMarkdown = (markdown: string) => {
   if (!markdown) return "";
-  
+
   // Convertir links en formato [texto](url)
   const linkRegex = /\[(.*?)\]\((.*?)\)/g;
   let parsedText = markdown.replace(linkRegex, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">$1</a>');
-  
+
   // Convertir texto en negrita **texto**
   const boldRegex = /\*\*(.*?)\*\*/g;
   parsedText = parsedText.replace(boldRegex, '<span class="font-bold">$1</span>');
-  
+
   return parsedText;
 };
 
@@ -45,7 +45,7 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
   const { total } = useTotal()
   const { getCity } = useCityProvider()
   const city = getCity()
-  
+
   if (!attendees.length || !products.length) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] space-y-4">
@@ -54,7 +54,7 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
       </div>
     )
   }
-  
+
 
   return (
     <div className="space-y-6 pb-[20px] md:pb-0">
@@ -111,8 +111,8 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
               isOpen={openCart}
               setIsOpen={setOpenCart}
             />
-            <WaiverCheckbox 
-              checked={waiverAccepted} 
+            <WaiverCheckbox
+              checked={waiverAccepted}
               onCheckedChange={setWaiverAccepted}
               className="px-3"
             />
@@ -132,8 +132,8 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
                 <div className="flex justify-center lg:ml-[255px]">
                   <div className="bg-white p-4 shadow-lg border border-neutral-200 rounded-lg min-w-[600px] pointer-events-auto">
                     <div className="space-y-3">
-                      <WaiverCheckbox 
-                        checked={waiverAccepted} 
+                      <WaiverCheckbox
+                        checked={waiverAccepted}
                         onCheckedChange={setWaiverAccepted}
                       />
                       <TotalFloatingBar setOpenCart={setOpenCart} waiverAccepted={waiverAccepted}/>
@@ -148,8 +148,8 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
                     isOpen={openCart}
                     setIsOpen={setOpenCart}
                   />
-                  <WaiverCheckbox 
-                    checked={waiverAccepted} 
+                  <WaiverCheckbox
+                    checked={waiverAccepted}
                     onCheckedChange={setWaiverAccepted}
                     className="px-3"
                   />
@@ -175,8 +175,8 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
                   isOpen={openCart}
                   setIsOpen={setOpenCart}
                 />
-                <WaiverCheckbox 
-                  checked={waiverAccepted} 
+                <WaiverCheckbox
+                  checked={waiverAccepted}
                   onCheckedChange={setWaiverAccepted}
                   className="px-3 mt-4"
                 />

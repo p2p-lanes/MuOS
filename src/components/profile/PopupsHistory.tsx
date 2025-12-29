@@ -60,28 +60,28 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
   const getMainPoapForPopup = (popupName: string): PoapProps | null => {
     // Find the popup in poapsWithPopup by popup_name
     const poapResponse = poapsWithPopup?.find(p => p.popup_name === popupName)
-    
+
     if (!poapResponse || !poapResponse.poaps || poapResponse.poaps.length === 0) {
       return null
     }
 
     // Find the first poap with attendee_category = 'main'
     const mainPoap = poapResponse.poaps.find(poap => poap.attendee_category === 'main')
-    
+
     return mainPoap || null
   }
-  
+
   // Filter applications where ALL attendees have NO products
-  const applicationsWithoutProducts = applications?.filter(app => 
+  const applicationsWithoutProducts = applications?.filter(app =>
     app.attendees.every(attendee => attendee.products.length >= 0)
   ) ?? []
-  
+
   // Map applications to popup data for upcoming popups with application status
   const upcomingPopupsFromApplications = applicationsWithoutProducts
     .map(app => {
       const popup = allPopups.find(p => p.id === app.popup_city_id)
       if (!popup) return null
-      
+
       return {
         popup_name: popup.name,
         start_date: popup.start_date,
@@ -147,7 +147,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
                         </div>
                       )
                     }
-                    
+
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4 text-black" />
                       <span className="text-sm">{formatDate(popup.start_date)} - {formatDate(popup.end_date)}</span>
@@ -206,7 +206,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
                     </div>
                     {(() => {
                       const mainPoap = getMainPoapForPopup(popup.popup_name)
-                      
+
                       if (!mainPoap) return null
 
                       const isClaimed = mainPoap.poap_claimed
@@ -226,7 +226,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
               ))}
             </div>
           </div>
-        
+
         </div>
       </div>
     </Card>
