@@ -6,6 +6,7 @@ import { ButtonAnimated } from "@/components/ui/button"
 import { EventProgressBar, EventStatus } from './EventProgressBar'
 import { PopupsProps } from '@/types/Popup'
 import { Badge } from '../ui/badge'
+import Image from 'next/image'
 
 interface EventCardProps extends PopupsProps {
   status?: EventStatus
@@ -23,11 +24,12 @@ export function EventCard({ name, tagline, location, start_date, end_date, image
     <CardAnimation anim={'entry'} duration={0.6} className="w-full overflow-hidden">
       <div className="flex flex-col sm:flex-row">
         <div className="relative sm:h-auto sm:hidden lg:inline-block lg:w-1/3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={image_url ?? "/background.png"}
             alt={name}
-            className="object-cover w-full h-full"
+            fill
+            className="object-cover"
+            priority
           />
         </div>
         <CardContent className="flex flex-col w-full p-6 mr-10">
