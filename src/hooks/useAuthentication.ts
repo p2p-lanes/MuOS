@@ -107,7 +107,7 @@ const useAuthentication = (): UseAuthenticationReturn => {
       }
       return
     }
-    
+
     if (validateToken(token)) {
       setTokenValidated(token)
     } else {
@@ -122,7 +122,7 @@ const useAuthentication = (): UseAuthenticationReturn => {
     isAuthenticated,
     login,
     logout,
-    validateToken, 
+    validateToken,
     token,
   }
 }

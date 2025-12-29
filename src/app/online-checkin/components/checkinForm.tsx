@@ -18,11 +18,9 @@ import axios from "axios"
 import { Checkbox } from "@/components/ui/checkbox"
 
 const api_key_prod = "62f8e186b8946b524ebdb53215b4a6dbcd5e4b14203edab8383cd533156d8af8"
-const api_key_dev = "e37e643784490aea0ac732101f38d8431f2420e0d8690faed1aa2df8bffe65e5"
 
-const isDev = process.env.NEXT_PUBLIC_DEVELOP === "true"
-const api_key = isDev ? api_key_dev : api_key_prod
-const api_url = isDev ? "https://portaldev.simplefi.tech" : "https://api-citizen-portal.simplefi.tech"
+const api_key = api_key_prod
+const api_url = "https://api-mu.simplefi.tech"
 
 export function CheckInForm() {
   const [arrivalDate, setArrivalDate] = useState<Date | undefined>()
@@ -95,7 +93,7 @@ export function CheckInForm() {
         <p className="text-gray-600 mb-6">
           We are excited to welcome you in Healdsburg and share this special time ahead. Please
           <strong> enter your (estimated) arrival and departure dates</strong> to help us create an amazing
-          experience. 
+          experience.
           <br />
           <br />
           Note: <strong>Wristband pick-up is mandatory.</strong>
@@ -173,7 +171,7 @@ export function CheckInForm() {
                 </Popover>
               </div>
             </div>
-            
+
             <div className="my-2 flex flex-col gap-4 ">
               <p className="text-gray-600">To complete your online check-in, you have to <strong>sign the following <a href="https://waiver.smartwaiver.com/w/bgnpvra597aqdukktfwyss/web/" target="_blank" rel="noopener noreferrer" className="text-blue-500">waiver</a></strong>.</p>
               <div className="flex items-center gap-2 ">

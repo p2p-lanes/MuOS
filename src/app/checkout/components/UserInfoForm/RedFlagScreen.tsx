@@ -25,18 +25,18 @@ const RedFlagScreen = ({ userName, popupName, popupSlug }: RedFlagScreenProps) =
       <CardContent className="space-y-6">
         <div className="text-center space-y-4">
           <p className="text-lg">
-            Hi <span className="font-semibold">{userName}</span>, before you can purchase a pass, 
+            Hi <span className="font-semibold">{userName}</span>, before you can purchase a pass,
             we'd love to get to know you better!
           </p>
           <p className="text-gray-600">
-            Please visit the Edge Portal and apply to{" "}
+            Please visit the TheMu Portal and apply to{" "}
             <span className="font-semibold">{popupName}</span>, so we can review your information.
           </p>
         </div>
-        
-        <Button 
+
+        <Button
           onClick={handlePortalRedirect}
-          className="w-full" 
+          className="w-full"
           size="lg"
         >
           Go to Portal
