@@ -32,11 +32,12 @@ export function ParticipationForm({ formData, errors, handleChange, fields }: Se
   };
 
   const durationOptions = [
-    { value: "1 week", label: "1 week" },
-    { value: "1 weekend", label: "1 weekend" },
-    { value: "2 weeks", label: "2 weeks" },
+    { value: "week 1", label: "AI week (May 10th - 16th)" },
+    { value: "week 2", label: "Biotech Week (May 17th - 23rd)" },
+    { value: "week 3", label: "Robotics & automation (May 24th - 30th)" },
+    { value: "week 4", label: "Entertainment & Art & Gaming (May 31st - 6th)" },
     { value: "a few days", label: "A few days" },
-    { value: "full length", label: `The full time (${dates})` },
+    { value: "full length", label: `Entire month (May 10th - Jun 06th)` },
   ]
 
   if (!fields || !fields.size || !fieldsParticipation.some(field => fields.has(field))) return null;

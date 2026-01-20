@@ -3,6 +3,7 @@ import { edgeSa } from "./Forms/edge-sa";
 import { edgeAustin } from "./Forms/edge-austin";
 import { edgeBhutan2025 } from "./Forms/edge-bhutan";
 import { edgePatagonia } from "./Forms/edge-patagonia";
+import { muShangai } from "./Forms/muShangai";
 
 export type DynamicForm = {
   local?: string,
@@ -42,12 +43,5 @@ export type DynamicForm = {
 }
 
 export const dynamicForm: Record<string, DynamicForm | null> = {
-  'default': edgeEsmeralda,
-  'buenos-aires': edgeEsmeralda,
-  "edge-esmeralda": edgeEsmeralda,
-  "edge-austin": edgeAustin,
-  'edge-sa': edgeSa,
-  'edge-bhutan-2025': edgeBhutan2025,
-  'edge-patagonia': edgePatagonia,
-  'edge-esmeralda-2026': edgeEsmeralda
+  'default': muShangai,
 }

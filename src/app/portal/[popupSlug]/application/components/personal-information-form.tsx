@@ -80,7 +80,7 @@ export function PersonalInformationForm({ formData, errors, handleChange, fields
             value={formData.telegram}
             onChange={(value) => handleChange('telegram', value)}
             error={errors.telegram}
-            isRequired={true}
+            isRequired={false}
             subtitle={`The primary form of communication during ${city?.name} will be a Telegram group, so create an account if you don't already have one`}
             addon="@"
             placeholder="username"
@@ -186,7 +186,7 @@ export function PersonalInformationForm({ formData, errors, handleChange, fields
       )}
 
 
-      {fields.has("info_not_shared") && (
+      {/* {fields.has("info_not_shared") && (
         <FormInputWrapper>
           <Label>
             Info I&apos;m <strong>NOT</strong> willing to share with other attendees
@@ -198,7 +198,7 @@ export function PersonalInformationForm({ formData, errors, handleChange, fields
             <MultiSelect options={shareableInfo} onChange={(selected) => handleChange('info_not_shared', selected)} defaultValue={formData.info_not_shared}/>
           </div>
         </FormInputWrapper>
-      )}
+      )} */}
       </SectionWrapper>
       <SectionSeparator />
     </>

@@ -29,6 +29,9 @@ export interface ApplicationProps {
   draft_and_demos?: string | null;
   host_session?: string;
   personal_goals?: string | null;
+  experience_goals?: string | null;
+  proud_projects?: string | null;
+  other_interests?: string | null;
   referral?: string | null;
   info_to_share?: string | null;
   investor?: string | null;

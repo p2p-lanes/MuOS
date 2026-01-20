@@ -20,12 +20,12 @@ const useProgress = (formData: FormData) => {
     const sections = [
       {
         name: 'personalInformation',
-        fields: ['first_name', 'last_name', 'telegram', 'gender', 'age', 'email', 'local_resident'].filter(f => fields.has(f)),
+        fields: ['first_name', 'last_name', 'gender', 'age', 'email', 'local_resident'].filter(f => fields.has(f)),
         required: true
       },
       // {
       //   name: 'personalInformation',
-      //   fields: ['first_name', 'last_name', 'telegram', 'gender', 'age', 'email', 'local_resident'].filter(f => fields.has(f)),
+      //   fields: ['first_name', 'last_name', 'gender', 'age', 'email', 'local_resident'].filter(f => fields.has(f)),
       //   required: formData.local_resident !== null
       // },
       {
