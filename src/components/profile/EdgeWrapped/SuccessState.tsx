@@ -32,7 +32,7 @@ export const SuccessState = ({ imageUrl }: SuccessStateProps) => {
             animate={{ filter: "blur(0px)", scale: 1 }}
             transition={{ duration: 3, ease: "circInOut" }}
             src={imageUrl} 
-            alt="Edge Mapped Island"
+            alt="The Mu Mapped Island"
             className="w-full h-auto object-contain block" 
           />
         </div>
@@ -40,7 +40,7 @@ export const SuccessState = ({ imageUrl }: SuccessStateProps) => {
       
       <div className="text-center text-base sm:text-sm text-gray-700 leading-relaxed px-1 sm:px-2">
         <p className="mb-2">
-         We’d love to see your island! To share it, copy the image and insert it into your post on X or Instagram, and tag @JoinEdgeCity
+         We’d love to see your island! To share it, copy the image and insert it into your post on X or Instagram, and tag @JoinTheMu
         </p>
       </div>
 
@@ -48,7 +48,7 @@ export const SuccessState = ({ imageUrl }: SuccessStateProps) => {
         <Button 
           onClick={handleDownload} 
           className="flex-1 gap-1 sm:gap-2 h-10 sm:h-11 text-xs sm:text-sm font-bold bg-[#2563EB] hover:bg-[#1d4ed8] text-white rounded-md border-2 border-[#2563EB] shadow-sm uppercase tracking-wide transition-all active:translate-y-0.5"
-          aria-label="Download your Edge Mapped image"
+          aria-label="Download your The Mu Mapped image"
         >
           <Download className="w-3 h-3 sm:w-4 sm:h-4" />
           Download

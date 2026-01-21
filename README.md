@@ -1,10 +1,10 @@
 ## 🌟 What is this?
 
-The resident portal is an open source project actively developed by SimpleFi (aka p2planes) jointly with the support of EdgeCity and Esmeralda and (hopefully) you!
+The resident portal is an open source project actively developed by SimpleFi (aka p2planes) jointly with the support of The Mu
  
 ## 🚀 Our Story
 
-We build technology to accelerate the experimentation rate of new forms of human cooperation. We do this by leveraging frontier technologies such as cryptocurrencies, ZK and AI as part of the tool stack of orgs doing the groundwork. After working closely with EdgeCity and Crecimiento, we understood that current tools, both closed and open source were not optimized for our desired use case, so we decided to build our own.
+We build technology to accelerate the experimentation rate of new forms of human cooperation. We do this by leveraging frontier technologies such as cryptocurrencies, ZK and AI as part of the tool stack of orgs doing the groundwork. After working closely with The Mu, we understood that current tools, both closed and open source were not optimized for our desired use case, so we decided to build our own.
 
 We hope that builders and companies within the pop-up city movement will recognize the value of this project and choose to contribute. We openly welcome the likes of Cursive, ZuPass, RaveApp, Sovs/Consensys, SocialLayer, etc. to join us in this effort.
 
@@ -116,7 +116,7 @@ For each table, staff users can create **custom views with specific filters** to
 ## Coupon Codes
 
 ### Overview
-This feature enables Edge City to create and manage promotional coupon codes within the Noco environment, giving customers discounts to complete purchases. It simplifies the application of discounts at checkout and tracking of active codes.
+This feature enables The Mu to create and manage promotional coupon codes within the Noco environment, giving customers discounts to complete purchases. It simplifies the application of discounts at checkout and tracking of active codes.
 
 ### Objective
 This feature aims to increase customer engagement, boost sales, and provide promotional offers to targeted communities. These discounts will not be applicable to Patron tickets but will be applicable to all other products.
@@ -135,7 +135,7 @@ This feature aims to increase customer engagement, boost sales, and provide prom
 
 ### User Stories
 - **As a customer,** I want to enter a coupon code at checkout so that I can receive a price reduction on my purchase.
-- **As an Edge City staff member,** I want to generate coupon codes so that I can attract new and returning organizations, movements, etc.
+- **As an The Mu staff member,** I want to generate coupon codes so that I can attract new and returning organizations, movements, etc.
 
 ### Database Schema
 **Table:** `coupon_codes` (Stored in NocoDB)

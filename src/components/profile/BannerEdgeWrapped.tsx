@@ -121,10 +121,10 @@ export default function BannerEdgeWrapped({
   }
 
   // Dynamic content based on edgeMappedSent
-  const title = edgeMappedSent ? "See My Edge Mapped" : "Get Your Edge Mapped"
+  const title = edgeMappedSent ? "See My The Mu Mapped" : "Get Your The Mu Mapped"
   const subtitle = edgeMappedSent 
     ? null 
-    : "Discover your lifetime activity at Edge and get your custom island!"
+    : "Discover your lifetime activity at The Mu and get your custom island!"
 
   if(!showBanner) return null
 
@@ -164,7 +164,7 @@ export default function BannerEdgeWrapped({
                 <div className="relative w-full h-48">
                   <NextImage 
                     src="/images/isla.png" 
-                    alt="Edge Land" 
+                    alt="The Mu Land" 
                     fill 
                     className="object-contain"
                   />
@@ -192,7 +192,7 @@ export default function BannerEdgeWrapped({
               <div className="relative w-27 h-27 md:w-52 md:h-52">
                 <NextImage 
                   src="/images/isla.png" 
-                  alt="Edge Land" 
+                  alt="The Mu Land" 
                   fill 
                   className="object-contain"
                 />

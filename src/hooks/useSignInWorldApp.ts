@@ -1,7 +1,7 @@
 import { MiniKit, SignMessageInput } from "@worldcoin/minikit-js"
 import { useEffect, useState } from "react"
 // import { hashSafeMessage } from "@safe-global/protocol-kit";
-const messageToSign = 'Welcome to EdgeOS! Click to sign a message with your wallet to log in. This request will not trigger a blockchain transaction or cost any gas fees.'
+const messageToSign = 'Welcome to The Mu! Click to sign a message with your wallet to log in. This request will not trigger a blockchain transaction or cost any gas fees.'
 
 const useSignInWorldApp = () => {
   const [address, setAddress] = useState<string | null>(null)

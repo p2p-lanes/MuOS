@@ -48,7 +48,7 @@ const PatagoniaResidenciesForm = ({ formData, errors, handleChange, fields }: Se
   
   return (
     <>
-    <SectionWrapper title={"Edge Patagonia 2025 residencies"} subtitle={"You can attend Edge City Patagonia solo, join an existing residency, or start your own."}>
+    <SectionWrapper title={"Edge Patagonia 2025 residencies"} subtitle={"You can attend The Mu solo, join an existing residency, or start your own."}>
       <div className="grid gap-4 grid-cols-1 sm:items-end">
         {/* <CheckboxForm
           label={'Are you interested in being part of a residency?'}

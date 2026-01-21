@@ -34,8 +34,8 @@ export const EdgeWrappedModal = ({
         onInteractOutside={(e) => e.preventDefault()}
         onEscapeKeyDown={(e) => e.preventDefault()}
       >
-        <DialogTitle className="sr-only">Edge Mapped Result</DialogTitle>
-        <DialogDescription className="sr-only">Your custom Edge City island</DialogDescription>
+        <DialogTitle className="sr-only">The Mu Mapped Result</DialogTitle>
+        <DialogDescription className="sr-only">Your custom The Mu island</DialogDescription>
         
         <div className="relative flex flex-col items-center justify-center min-h-[300px] sm:min-h-[400px] w-full transition-all duration-300">
           <AnimatePresence mode="wait">

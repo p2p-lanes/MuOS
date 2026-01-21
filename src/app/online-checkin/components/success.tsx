@@ -25,7 +25,7 @@ const success = ({arrivalDate, departureDate}: {arrivalDate: Date, departureDate
 
           <h2 className="text-2xl font-bold mb-2">Online Check-in Successful!</h2>
           <p className="text-gray-600 mb-6">
-            Thank you for completing your online check-in for Edge Esmeralda 2025. We&apos;ve recorded your arrival and
+            Thank you for completing your online check-in for The Mu 2026. We&apos;ve recorded your arrival and
             departure dates.
           </p>
 

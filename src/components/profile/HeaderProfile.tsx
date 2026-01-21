@@ -19,7 +19,7 @@ const HeaderProfile = () => {
             <SidebarTrigger className="xl:hidden" />
             <div>
               <h1 className="text-2xl font-bold text-gray-900">My Profile</h1>
-              <p className="text-gray-600">Manage your Edge experience and history</p>
+              <p className="text-gray-600">Manage your The Mu experience and history</p>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3">

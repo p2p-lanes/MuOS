@@ -44,7 +44,7 @@ const PopupsMenu = ({ handleClickCity }: { handleClickCity: (city: PopupsProps) 
                         >
                         <Image
                           src="/logo.jpg"
-                          alt="EdgeCity illustration"
+                          alt="The Mu illustration"
                           width={48}
                           height={48}
                         />

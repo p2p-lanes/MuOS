@@ -462,7 +462,7 @@ export default function MergeEmails() {
             <div className='flex flex-col items-start'>
               <div className='flex flex-wrap items-center gap-2 mb-1'>
                 <h3 className='text-lg font-semibold text-[#020817] leading-tight'>
-                  Combine your Edge City metrics
+                  Combine your The Mu metrics
                 </h3>
                 <Badge
                   variant='secondary'
@@ -471,7 +471,7 @@ export default function MergeEmails() {
                 </Badge>
               </div>
               <p className='text-sm text-[#64748b] max-w-[400px] md:max-w-none'>
-                Connect multiple emails to see combined stats across all your Edge
+                Connect multiple emails to see combined stats across all your The Mu
                 City activity.
               </p>
             </div>

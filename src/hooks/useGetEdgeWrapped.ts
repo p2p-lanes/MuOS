@@ -39,10 +39,10 @@ export const useGetEdgeWrapped = (): UseGetEdgeWrappedReturn => {
         const imageUrl = `data:image/png;base64,${base64}`;
         setData(imageUrl)
       } else {
-        setError("Failed to fetch Edge Wrapped")
+        setError("Failed to fetch The Mu Wrapped")
       }
     } catch (e: unknown) {
-      const message = e instanceof Error ? e.message : "Unexpected error fetching Edge Wrapped"
+      const message = e instanceof Error ? e.message : "Unexpected error fetching The Mu Wrapped"
       setError(message)
     } finally {
       setIsLoading(false)

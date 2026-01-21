@@ -22,7 +22,7 @@ const DrawerEmailWorldID = ({ open, setOpen, handleCancel, handleSubmit, isLoadi
             <div>
               <Image
                 src="https://cdn.prod.website-files.com/65b2cb5abdecf7cd7747e170/66b1dc2e893d609f5e3d5efa_ec_lockup_wht.svg"
-                alt="EdgeCity Logo"
+                alt="The Mu Logo"
                 width={70}
                 height={40}
                 priority

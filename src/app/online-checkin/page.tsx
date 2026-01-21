@@ -6,7 +6,7 @@ const page = () => {
     <div className="flex items-center justify-center p-4 h-screen">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image src="https://simplefi.s3.us-east-2.amazonaws.com/checkin-background.png" alt="Edge Esmeralda background" fill priority className="object-cover" />
+        <Image src="https://simplefi.s3.us-east-2.amazonaws.com/checkin-background.png" alt="The Mu background" fill priority className="object-cover" />
       </div>
 
       {/* Content Container */}

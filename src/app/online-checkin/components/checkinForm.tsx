@@ -89,7 +89,7 @@ export function CheckInForm() {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-        <h1 className="text-2xl font-bold mb-2">Online Check-in for Edge Esmeralda 2025</h1>
+        <h1 className="text-2xl font-bold mb-2">Online Check-in for The Mu 2026</h1>
         <p className="text-gray-600 mb-6">
           We are excited to welcome you in Healdsburg and share this special time ahead. Please
           <strong> enter your (estimated) arrival and departure dates</strong> to help us create an amazing

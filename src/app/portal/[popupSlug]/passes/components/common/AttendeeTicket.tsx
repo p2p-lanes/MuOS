@@ -126,7 +126,7 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
                 <div className="flex items-center gap-2 xl:order-1">
                   <Image
                     src="/icon.png"
-                    alt="EdgeCity Logo"
+                    alt="The Mu Logo"
                     width={20}
                     height={20}
                     priority

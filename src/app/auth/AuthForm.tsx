@@ -85,7 +85,7 @@ export default function AuthForm() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.jpg"
-            alt="EdgeCity illustration"
+            alt="The Mu illustration"
             style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0.5rem'}}
           />
         </motion.div>
