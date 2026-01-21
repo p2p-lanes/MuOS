@@ -118,14 +118,14 @@ export default function FormPage() {
 
         <AccomodationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
 
-    <SectionWrapper title="Info I&apos;m NOT willing to share with other attendees" subtitle="We will make a directory to make it easier for attendees to coordinate">
+        <SectionWrapper title="Info I&apos;m NOT willing to share with other attendees" subtitle="We will make a directory to make it easier for attendees to coordinate">
 
-        <FormInputWrapper>
-          <div className="space-y-2 ">
-            <MultiSelect options={shareableInfo} onChange={(selected) => handleChange('info_not_shared', selected)} defaultValue={[]}/>
-          </div>
-        </FormInputWrapper>
-    </SectionWrapper>
+            <FormInputWrapper>
+              <div className="space-y-2 ">
+                <MultiSelect options={shareableInfo} onChange={(selected) => handleChange('info_not_shared', selected)} defaultValue={formData.info_not_shared as string[]}/>
+              </div>
+            </FormInputWrapper>
+        </SectionWrapper>
 
 
         

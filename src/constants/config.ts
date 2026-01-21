@@ -16,6 +16,6 @@ export const config = {
       }],
     },
   },
-  name: "TheMu Portal",
+  name: "The Mu Portal",
 }
 
