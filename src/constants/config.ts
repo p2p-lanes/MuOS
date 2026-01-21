@@ -2,15 +2,15 @@ import icon from '../../public/icon.png'
 
 export const config = {
   metadata: {
-    title: "TheMu Portal",
-    description: "Welcome to the TheMu Portal. Log in or sign up to access TheMu events.",
+    title: "The Mu Portal",
+    description: "Welcome to the The Mu Portal. Log in or sign up to access The Mu events.",
     icon: icon.src,
     openGraph: {
-      title: "TheMu Portal",
-      description: "Welcome to the TheMu Portal. Log in or sign up to access TheMu events.",
+      title: "The Mu Portal",
+      description: "Welcome to the The Mu Portal. Log in or sign up to access The Mu events.",
       images: [{
-        url: "https://simplefi.s3.us-east-2.amazonaws.com/edgecity.png",
-        alt: "TheMu Portal",
+        url: "https://simplefi.s3.us-east-2.amazonaws.com/background.png",
+        alt: "The Mu Portal",
         width: 1200,
         height: 630,
       }],
