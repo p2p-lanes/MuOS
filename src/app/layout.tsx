@@ -15,12 +15,20 @@ export const metadata: Metadata = {
   openGraph: {
     title: config.metadata.openGraph.title,
     description: config.metadata.openGraph.description,
+    type: config.metadata.openGraph.type as "website",
+    siteName: config.metadata.openGraph.siteName,
     images: [{
       url: config.metadata.openGraph.images[0].url,
       width: config.metadata.openGraph.images[0].width,
       height: config.metadata.openGraph.images[0].height,
       alt: config.metadata.openGraph.images[0].alt,
     }]
+  },
+  twitter: {
+    card: config.metadata.twitter.card as "summary_large_image",
+    title: config.metadata.twitter.title,
+    description: config.metadata.twitter.description,
+    images: config.metadata.twitter.images,
   }
 };
 
