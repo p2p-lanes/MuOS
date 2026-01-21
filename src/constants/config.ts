@@ -9,7 +9,7 @@ export const config = {
       title: "The Mu Portal",
       description: "Welcome to the The Mu Portal. Log in or sign up to access The Mu events.",
       images: [{
-        url: "https://simplefi.s3.us-east-2.amazonaws.com/background.png",
+        url: "https://simplefi.s3.us-east-2.amazonaws.com/background_themu.jpg",
         alt: "The Mu Portal",
         width: 1200,
         height: 630,
@@ -21,7 +21,7 @@ export const config = {
       card: "summary_large_image",
       title: "The Mu Portal",
       description: "Welcome to the The Mu Portal. Log in or sign up to access The Mu events.",
-      images: ["https://simplefi.s3.us-east-2.amazonaws.com/background.png"],
+      images: ["https://simplefi.s3.us-east-2.amazonaws.com/background_themu.jpg"],
     },
   },
   name: "The Mu Portal",
