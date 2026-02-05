@@ -35,6 +35,10 @@ NEXT_PUBLIC_API_URL = http://localhost:8000  # Set this if running backend local
 
 # API Key for Portal
 NEXT_PUBLIC_X_API_KEY =
+
+# AWS S3 Configuration (for file uploads - server-side only)
+AWS_ACCESS_KEY_ID = your_aws_access_key
+AWS_SECRET_ACCESS_KEY = your_aws_secret_key
 ```
 
 2. Build and start the containers:
