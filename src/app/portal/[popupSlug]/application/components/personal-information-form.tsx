@@ -80,7 +80,7 @@ export function PersonalInformationForm({ formData, errors, handleChange, fields
             value={formData.telegram}
             onChange={(value) => handleChange('telegram', value)}
             error={errors.telegram}
-            isRequired={false}
+            isRequired={true}
             subtitle={`The primary form of communication during ${city?.name} will be a Telegram group, so create an account if you don't already have one`}
             addon="@"
             placeholder="username"
@@ -93,6 +93,7 @@ export function PersonalInformationForm({ formData, errors, handleChange, fields
             value={formData.residence ?? ''}
             onChange={(value) => handleChange('residence', value)}
             error={errors.residence}
+            isRequired={true}
             placeholder={form?.personal_information?.residence_placeholder ?? "Healdsburg, California, USA"}
             subtitle="Please format it like [City, State/Region, Country]. Feel free to put multiple cities if you live in multiple places."
           />

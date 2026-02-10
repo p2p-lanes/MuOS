@@ -20,7 +20,7 @@ const useProgress = (formData: FormData) => {
     const sections = [
       {
         name: 'personalInformation',
-        fields: ['first_name', 'last_name', 'gender', 'age', 'email', 'local_resident'].filter(f => fields.has(f)),
+        fields: ['first_name', 'last_name', 'gender', 'age', 'email', 'local_resident', 'telegram', 'residence'].filter(f => fields.has(f)),
         required: true
       },
       // {
@@ -30,12 +30,17 @@ const useProgress = (formData: FormData) => {
       // },
       {
         name: 'personalInformation',
-        fields: ['gender_specify'].filter(f => fields.has(f)),
+        fields: ['gender_specify', "organization", "role", "current_building", "experience_goals", "proud_projects", "other_interests"].filter(f => fields.has(f)),
         required: formData.gender === 'Specify'
       },
       {
         name: 'professionalDetails',
         fields: ['organization'].filter(f => fields.has(f)),
+        required: !isVideoValid
+      },
+      {
+        name: 'professionalDetails',
+        fields: ['role', 'current_building', 'github_profile', 'area_of_expertise', 'experience_goals', 'proud_projects', 'other_interests'].filter(f => fields.has(f)),
         required: !isVideoValid
       },
       {

@@ -40,7 +40,7 @@ export function ProfessionalDetailsForm({ formData, errors, handleChange, fields
               value={formData.role ?? ''}
               onChange={(value: string) => handleChange('role', value)}
               error={errors.role}
-              isRequired={false}
+              isRequired={true}
               subtitle="Job title or a 1-sentence description."
             />
           )}
@@ -54,7 +54,7 @@ export function ProfessionalDetailsForm({ formData, errors, handleChange, fields
               value={formData.current_building ?? ''}
               handleChange={(value: string) => handleChange('current_building', value)}
               error={errors.current_building}
-              isRequired={false}
+              isRequired={true}
             />
           </div>
         )}
@@ -66,6 +66,7 @@ export function ProfessionalDetailsForm({ formData, errors, handleChange, fields
             value={formData.github_profile ?? ''}
             onChange={(value: string) => handleChange('github_profile', value)}
             error={errors.github_profile}
+            isRequired={true}
             subtitle="Show us what you are working on!"
           />
         )}
@@ -77,7 +78,7 @@ export function ProfessionalDetailsForm({ formData, errors, handleChange, fields
             value={formData.area_of_expertise ?? ''}
             onChange={(value: string) => handleChange('area_of_expertise', value)}
             error={errors.area_of_expertise}
-            isRequired={false}
+            isRequired={true}
             subtitle=" Please list your top professional skills, areas of expertise, and/or spheres of influence (i.e. sustainable energy, AI R&D, neuropsychology and BMIs, cryptocurrency and blockchain development, etc)."
           />
         )}
@@ -89,7 +90,7 @@ export function ProfessionalDetailsForm({ formData, errors, handleChange, fields
             value={formData.experience_goals ?? ''}
             handleChange={(value: string) => handleChange('experience_goals', value)}
             error={errors.experience_goals}
-            isRequired={false}
+            isRequired={true}
           />
         )}
 
@@ -100,7 +101,7 @@ export function ProfessionalDetailsForm({ formData, errors, handleChange, fields
             value={formData.proud_projects ?? ''}
             handleChange={(value: string) => handleChange('proud_projects', value)}
             error={errors.proud_projects}
-            isRequired={false}
+            isRequired={true}
           />
         )}
 
@@ -111,7 +112,7 @@ export function ProfessionalDetailsForm({ formData, errors, handleChange, fields
             value={formData.other_interests ?? ''}
             handleChange={(value: string) => handleChange('other_interests', value)}
             error={errors.other_interests}
-            isRequired={false}
+            isRequired={true}
           />
         )}
       </SectionWrapper>
