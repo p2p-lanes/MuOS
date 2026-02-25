@@ -2,9 +2,11 @@ import { Users } from "lucide-react";
 import useGetGroups from "../hooks/useGetGroups"
 import ActiveResource from "../StatusResource/ActiveResource";
 import { useCityProvider } from "@/providers/cityProvider";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 const GroupsResources = () => {
+  const t = useTranslations('sidebar')
   const { groups, isLoading } = useGetGroups()
   const { getCity } = useCityProvider()
   const city = getCity()
@@ -22,7 +24,7 @@ const GroupsResources = () => {
     <div className="flex flex-col ml-2">
       {
         filteredGroups.length > 0 && (
-          <p className="text-xs font-medium text-gray-500 mb-2">Groups</p>
+          <p className="text-xs font-medium text-gray-500 mb-2">{t('groups')}</p>
         )
       }
       {filteredGroups.map((group) => (

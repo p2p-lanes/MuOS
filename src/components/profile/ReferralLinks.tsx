@@ -9,12 +9,14 @@ import { useCityProvider } from "@/providers/cityProvider"
 import { getBaseUrl } from "@/utils/environment"
 import { useState } from "react"
 import { Card } from "../ui/card"
+import { useTranslations } from "next-intl"
 
 export default function ReferralLinks({ referralCount }: { referralCount: number }) {
   const { groups } = useGetGroups()
   const { getPopups } = useCityProvider()
   const popups = getPopups()
   const [copiedId, setCopiedId] = useState<string | null>(null)
+  const t = useTranslations('profile')
 
   const activeGroups = groups.filter((group: GroupProps) => {
     const groupPopup = popups.find((popup: PopupsProps) => popup.id === group.popup_city_id)
@@ -34,13 +36,13 @@ export default function ReferralLinks({ referralCount }: { referralCount: number
     <Card className="p-4 md:p-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
         <div className="flex flex-col gap-1 items-start justify-center">
-          <h3 className="text-lg font-semibold text-[#020817]">Referral Links</h3>
+          <h3 className="text-lg font-semibold text-[#020817]">{t('referralLinks')}</h3>
           <p className="text-sm text-[#64748b]">
-            Give your friends an auto-approval for upcoming The Mu events
+            {t('referralLinksDescription')}
           </p>
         </div>
         <div className="flex gap-2 items-center mt-4 md:mt-0 md:items-end">
-          <p className="text-xs text-[#64748b] mb-1">Total referrals</p>
+          <p className="text-xs text-[#64748b] mb-1">{t('totalReferrals')}</p>
           <p className="text-2xl font-bold text-[#020817]">{referralCount}</p>
         </div>
       </div>
@@ -49,7 +51,7 @@ export default function ReferralLinks({ referralCount }: { referralCount: number
         {activeGroups.length === 0 ? (
           <div className="flex items-center justify-center p-4">
             <p className="text-sm text-[#64748b] text-center">
-              You don’t have referral links for future pop-ups. Buy a ticket and get your referral link.
+              {t('noReferralLinks')}
             </p>
           </div>
         ) : (

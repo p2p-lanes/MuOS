@@ -6,6 +6,7 @@ import { CitizenProfile } from "@/types/Profile"
 import { Skeleton } from "../ui/skeleton"
 import { Avatar } from "../ui/avatar"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 
 interface MatchedPerson {
@@ -19,6 +20,7 @@ interface MatchedPerson {
 
 const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProfile | null, eventsLoading: boolean, events: any}) => {
   const [topMatches, setTopMatches] = useState<MatchedPerson[]>([])
+  const t = useTranslations('profile')
 
   const calculateTopMatches = useCallback(() => {
     if (!events || events.length === 0 || !userData) {
@@ -28,18 +30,13 @@ const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProf
 
     const userEmails = [userData.primary_email, userData.secondary_email].filter((e): e is string => !!e && e !== "")
 
-    // Create a map to count occurrences of each participant by ID
     const participantCounts: Record<string, MatchedPerson> = {}
 
     events.forEach((event: any) => {
       if (event.participants) {
         event.participants.forEach((participant: EventParticipant) => {
           const profile = participant.profile
-          // If profile exists
           if (profile) {
-            // Check if it's the current user.
-            // If we have an email, check against userEmails.
-            // If email is null (redacted), it's definitely not the current user (assuming API returns email for requester).
             const isCurrentUser = profile.email && userEmails.includes(profile.email);
 
             if (!isCurrentUser) {
@@ -63,7 +60,6 @@ const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProf
       }
     })
 
-    // Convert to array, sort by eventsCount and take top 5
     const sortedMatches = Object.values(participantCounts)
       .sort((a, b) => b.eventsCount - a.eventsCount)
       .slice(0, 5)
@@ -80,12 +76,11 @@ const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProf
     <Card className="p-6">
       <div className="flex flex-col h-full">
         <div className="mb-4">
-          <h2 className="text-2xl font-semibold text-gray-900">Top Connections</h2>
-          <p className="text-sm text-gray-600">People with whom you’ve overlapped the most at specific Social Layer calendar events.</p>
+          <h2 className="text-2xl font-semibold text-gray-900">{t('topConnections')}</h2>
+          <p className="text-sm text-gray-600">{t('topConnectionsDescription')}</p>
         </div>
         <div className="flex-1 flex flex-col gap-3 mt-2">
           {eventsLoading ? (
-            // Skeleton loading state
             <div className="space-y-3">
               {[1, 2, 3].map((i) => (
                 <div key={i} className="flex items-center gap-3">
@@ -98,7 +93,6 @@ const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProf
               ))}
             </div>
           ) : topMatches.length > 0 ? (
-            // Show top matches
             topMatches.map((match) => (
               <div key={match.id} className="flex items-center justify-between gap-3 mt-2 border-b border-gray-100 pb-3">
                 <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -137,16 +131,15 @@ const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProf
                 </div>
                 <div className="text-sm font-medium text-blue-400 text-right shrink-0">
                   {match.eventsCount}
-                  <p className="text-xs text-gray-500">events</p>
+                  <p className="text-xs text-gray-500">{t('events')}</p>
                 </div>
               </div>
             ))
           ) : (
-            // No matches state
             <div className="flex flex-col items-center justify-center flex-1 text-center py-4">
               <Users className="w-8 h-8 text-gray-300 mb-2" />
-              <p className="text-sm text-gray-500">No shared events found</p>
-              <p className="text-xs text-gray-400">Attend more events to find matches</p>
+              <p className="text-sm text-gray-500">{t('noSharedEvents')}</p>
+              <p className="text-xs text-gray-400">{t('attendMoreEvents')}</p>
             </div>
           )}
         </div>

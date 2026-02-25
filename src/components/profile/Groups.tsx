@@ -2,7 +2,7 @@ import { Card } from "../ui/card"
 import useGetGroups from "../Sidebar/hooks/useGetGroups"
 import { Button } from "../ui/button"
 import { Check, Copy, SquareArrowOutUpRight, User } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/i18n/navigation"
 import { getBaseUrl } from "@/utils/environment"
 import { useState } from "react"
 import { useCityProvider } from "@/providers/cityProvider"
@@ -11,6 +11,7 @@ import { GroupProps } from "@/types/Group"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 import { Badge } from "../ui/badge"
 import { PopupsProps } from "@/types/Popup"
+import { useTranslations } from "next-intl"
 
 // Function to get checkout link for a specific group
 const getCheckoutLinkForGroup = (group: GroupProps, popups: PopupsProps[]): string | null => {
@@ -33,13 +34,14 @@ const Groups = () => {
   const router = useRouter()
   const { getPopups } = useCityProvider()
   const popups = getPopups()
+  const t = useTranslations('profile')
 
   if(groups.length === 0) return null
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 mb-8">
       <div className="p-6 border-b border-gray-200">
-        <h2 className="text-xl font-semibold text-gray-900">Groups</h2>
+        <h2 className="text-xl font-semibold text-gray-900">{t('groups')}</h2>
       </div>
 
       <div className="p-6">
@@ -54,7 +56,7 @@ const Groups = () => {
                 <div className="flex flex-col gap-2">
                   <h3 className="font-semibold text-gray-900">{group.name}</h3>
                   <p className="text-sm text-gray-600 font-medium">{group.popup_name}</p>
-                  <Badge variant={'outline'} className="w-fit mt-1">{group.is_ambassador_group ? 'Ambassador' : 'Group'}</Badge>
+                  <Badge variant={'outline'} className="w-fit mt-1">{group.is_ambassador_group ? t('ambassador') : t('group')}</Badge>
                 </div>
                 <ButtonCopyLink group={group} popups={popups} isPopupActive={isPopupActive}/>
               </div>
@@ -69,30 +71,29 @@ const Groups = () => {
 
 export const ButtonCopyLink = ({ group, popups, isPopupActive }: { group: GroupProps, popups: PopupsProps[], isPopupActive: boolean }) => {
   const [isCopied, setIsCopied] = useState(false)
+  const t = useTranslations('profile')
 
-  // Don't render button if popup is not active
   if (!isPopupActive) return null
 
   const handleCopyCheckoutLink = async (group: GroupProps) => {
     const checkoutLink = getCheckoutLinkForGroup(group, popups)
     
     if (!checkoutLink) {
-      toast.error('No se pudo generar el link para este grupo')
+      toast.error(t('linkGenerateError'))
       return
     }
     
     try {
       await navigator.clipboard.writeText(checkoutLink)
       setIsCopied(true)
-      toast.success('Express Checkout link copied to clipboard!')
+      toast.success(t('linkCopied'))
       
-      // Reset copied state after 2 seconds
       setTimeout(() => {
         setIsCopied(false)
       }, 2000)
     } catch (error) {
       console.error('Failed to copy:', error)
-      toast.error('Failed to copy link to clipboard')
+      toast.error(t('linkCopyError'))
     }
   }
 
@@ -119,7 +120,7 @@ export const ButtonCopyLink = ({ group, popups, isPopupActive }: { group: GroupP
 
         </TooltipTrigger>
         <TooltipContent>
-          {group.is_ambassador_group ? 'Copy Referral Link' : 'Copy Express Checkout Link'}
+          {group.is_ambassador_group ? t('copyReferralLink') : t('copyExpressCheckoutLink')}
         </TooltipContent>
       </Tooltip>
   )

@@ -1,7 +1,8 @@
 import { api } from "@/api"
 import { useCityProvider } from "@/providers/cityProvider"
 import { PopupsProps } from "@/types/Popup"
-import { useParams, usePathname, useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
+import { usePathname, useRouter } from "@/i18n/navigation"
 import { useEffect } from "react"
 import useAuthentication from "./useAuthentication"
 

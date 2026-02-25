@@ -2,10 +2,11 @@ import { ChevronRight } from "lucide-react"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb"
 import { SidebarTrigger } from "./SidebarComponents"
 import { useCityProvider } from "@/providers/cityProvider"
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from '@/i18n/navigation'
 import { Fragment } from "react"
 import useGroupMapping from "./hooks/useGroupMapping"
 import BreadcrumbSegment from "./BreadcrumbSegment"
+import LanguageSwitcher from "./LanguageSwitcher"
 
 const HeaderBar = () => {
   const { getCity } = useCityProvider()
@@ -49,6 +50,9 @@ const HeaderBar = () => {
           ))}
         </BreadcrumbList>
       </Breadcrumb>
+      <div className="ml-auto flex items-center">
+        <LanguageSwitcher />
+      </div>
     </header>
   )
 }

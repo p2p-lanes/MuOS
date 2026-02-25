@@ -1,11 +1,12 @@
 import { CitizenProfile } from "@/types/Profile"
 import { MapPinned, Speech, Calendar1 } from "lucide-react"
 import { Card } from "../ui/card"
+import { useTranslations } from "next-intl"
 
 const StatsCards = ({userData}: {userData: CitizenProfile | null}) => {
+  const t = useTranslations('profile')
   const currentDate = new Date()
 
-  // Filter only popups that have already ended
   const completedPopups = userData?.popups?.filter(popup => {
     const endDate = new Date(popup.end_date)
     return endDate < currentDate
@@ -18,7 +19,7 @@ const StatsCards = ({userData}: {userData: CitizenProfile | null}) => {
       <Card className="p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-600 mb-1">Pop-ups attended</p>
+            <p className="text-sm text-gray-600 mb-1">{t('popupsAttended')}</p>
             <p className="text-3xl font-bold text-gray-900">{completedPopups.length}</p>
           </div>
           <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -30,7 +31,7 @@ const StatsCards = ({userData}: {userData: CitizenProfile | null}) => {
       <Card className="p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-600 mb-1">Days at Mu</p>
+            <p className="text-sm text-gray-600 mb-1">{t('daysAtMu')}</p>
             <p className="text-3xl font-bold text-gray-900">{totalDays}</p>
           </div>
           <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -42,7 +43,7 @@ const StatsCards = ({userData}: {userData: CitizenProfile | null}) => {
       <Card className="p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-600 mb-1">Referrals</p>
+            <p className="text-sm text-gray-600 mb-1">{t('referrals')}</p>
             <p className="text-3xl font-bold text-gray-900">{userData?.referral_count ?? 0}</p>
           </div>
           <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">

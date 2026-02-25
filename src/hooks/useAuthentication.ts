@@ -3,9 +3,11 @@
 import { api, instance } from "@/api"
 import { User } from "@/types/User"
 import { jwtDecode } from "jwt-decode"
-import { useParams, useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
+import { useRouter } from "@/i18n/navigation"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
+import { useTranslations } from "next-intl"
 
 interface UseAuthenticationReturn {
   user: User | null
@@ -18,6 +20,7 @@ interface UseAuthenticationReturn {
 }
 
 const useAuthentication = (): UseAuthenticationReturn => {
+  const t = useTranslations('auth')
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -55,7 +58,7 @@ const useAuthentication = (): UseAuthenticationReturn => {
 
       if(response.status === 401) {
         logout()
-        toast.error('Invalid token. Please log in again.')
+        toast.error(t('invalidToken'))
         return false
       }
     }

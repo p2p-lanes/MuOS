@@ -2,8 +2,10 @@ import { useApplication } from "@/providers/applicationProvider"
 import { useCityProvider } from "@/providers/cityProvider"
 import { Resource } from "@/types/resources"
 import { FileText, Home, Ticket, Users } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 const useResources = () => {
+  const t = useTranslations('resources')
   const { getCity } = useCityProvider()
   const { getRelevantApplication } = useApplication()
   const application = getRelevantApplication()
@@ -15,42 +17,37 @@ const useResources = () => {
 
   const resources: Resource[] = [
     {
-      name: 'Application',
+      name: t('application'),
       icon: FileText,
       status: 'active',
       path: `/portal/${city?.slug}`,
       children: [
         {
-          name: 'Status',
+          name: t('status'),
           status: 'inactive',
-          value: application?.status ?? 'not started'
+          value: application?.status ?? t('notStarted')
         }
       ]
     },
     {
-      name: 'Passes',
+      name: t('passes'),
       icon: Ticket,
       status: applicationAccepted ? 'active' : 'disabled',
       path: `/portal/${city?.slug}/passes`,
       children: [
         {
-          name: 'ZK Email discounts',
+          name: t('zkEmailDiscounts'),
           status: isEdge && applicationAccepted ? 'active' : !applicationAccepted ? 'disabled' : 'hidden',
           path: `/portal/${city?.slug}/coupons`
         }
       ]
     },
     {
-      name: 'Attendee Directory', 
+      name: t('attendeeDirectory'), 
       icon: Users,
       status: canSeeAttendees ? 'active' : 'hidden',
       path: `/portal/${city?.slug}/attendees`,
     },
-    // {
-    //   name: 'Housing',
-    //   icon: Home,
-    //   status: isEdgeAustin ? 'hidden' : 'soon' as const
-    // }
   ]
 
   return ({resources})

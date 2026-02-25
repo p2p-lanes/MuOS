@@ -1,5 +1,5 @@
 import { SidebarGroupContent, SidebarGroup, SidebarContent, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarMenuSub, SidebarMenuSubItem } from "./SidebarComponents"
-import { useRouter, usePathname } from "next/navigation"
+import { useRouter } from "@/i18n/navigation"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 import { Resource } from "@/types/resources"
 import useResources from "@/hooks/useResources"
@@ -11,6 +11,7 @@ import { Separator } from "../ui/separator"
 import GroupsResources from "./Groups/GroupsResources"
 import { useState, useEffect, useCallback } from "react"
 import { Loader2 } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 const statusColor = (status: string) => {
   if(status === 'pending') return 'bg-yellow-100 text-yellow-800'
@@ -22,6 +23,7 @@ const statusColor = (status: string) => {
 }
 
 const ResourceMenuItem: React.FC<{ resource: Resource, level?: number }> = ({ resource, level = 0 }) => {
+  const t = useTranslations('sidebar')
   const router = useRouter()
 
   const handleClickPath = useCallback((path?: string) => {
@@ -47,7 +49,7 @@ const ResourceMenuItem: React.FC<{ resource: Resource, level?: number }> = ({ re
           }
         </TooltipTrigger>
         <TooltipContent side="right" className="hidden group-data-[collapsible=icon]:block">
-          {resource.name} {resource.status === 'soon' ? '(Coming Soon)' : ''}
+          {resource.name} {resource.status === 'soon' ? `(${t('comingSoon')})` : ''}
         </TooltipContent>
       </Tooltip>
 
@@ -63,12 +65,13 @@ const ResourceMenuItem: React.FC<{ resource: Resource, level?: number }> = ({ re
 }
 
 const ResourcesMenu = () => {
+  const t = useTranslations('sidebar')
   const { resources } = useResources()
 
   return (
     <SidebarContent>
       <SidebarGroup>
-        <SidebarGroupLabel>Your Participation</SidebarGroupLabel>
+        <SidebarGroupLabel>{t('yourParticipation')}</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             {resources.map((resource) => (

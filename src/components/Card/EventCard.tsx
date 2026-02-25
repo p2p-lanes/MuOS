@@ -7,6 +7,7 @@ import { EventProgressBar, EventStatus } from './EventProgressBar'
 import { PopupsProps } from '@/types/Popup'
 import { Badge } from '../ui/badge'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 interface EventCardProps extends PopupsProps {
   status?: EventStatus
@@ -15,6 +16,7 @@ interface EventCardProps extends PopupsProps {
 }
 
 export function EventCard({ name, tagline, location, start_date, end_date, image_url, status = 'not_started', onApply, canApply }: EventCardProps) {
+  const t = useTranslations('eventCard')
 
   const startDate = new Date(start_date)?.toLocaleDateString('en-EN', {day: 'numeric', month: 'long', year: 'numeric'})
   const endDate = new Date(end_date)?.toLocaleDateString('en-EN', {day: 'numeric', month: 'long', year: 'numeric'})
@@ -52,12 +54,12 @@ export function EventCard({ name, tagline, location, start_date, end_date, image
                 {status !== 'rejected' && (
                   <div className="flex items-end justify-end sm:justify-end">
                     <ButtonAnimated onClick={onApply} className='w-full md:w-auto px-9'>
-                      {status === 'not_started' ? 'Apply' :
-                      status === 'draft' ? 'Continue Application' :
-                      status === 'in review' ? 'Edit Application' :
-                      status === 'accepted' ? 'Go to Passes' :
-                      status === 'withdrawn' ? 'Resume Application' :
-                      'Modify Ticket'}
+                      {status === 'not_started' ? t('apply') :
+                      status === 'draft' ? t('continueApplication') :
+                      status === 'in review' ? t('editApplication') :
+                      status === 'accepted' ? t('goToPasses') :
+                      status === 'withdrawn' ? t('resumeApplication') :
+                      t('modifyTicket')}
                     </ButtonAnimated>
                   </div>
                 )}
@@ -65,7 +67,7 @@ export function EventCard({ name, tagline, location, start_date, end_date, image
             ) : status === 'accepted' ? (
               <div  className="flex items-end justify-end sm:justify-end">
                   <ButtonAnimated onClick={onApply} className='w-full md:w-auto px-9'>
-                    {status === 'accepted' ? 'Go to Passes' : null}
+                    {status === 'accepted' ? t('goToPasses') : null}
                   </ButtonAnimated>
                 </div>
             ) : null

@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useMemo, useState, useEffect } fr
 import { useApplication } from './applicationProvider';
 import { usePassesProvider } from './passesProvider';
 import { TotalCalculator } from '@/strategies/TotalStrategy';
-import useDiscountCode from '@/app/portal/[popupSlug]/passes/hooks/useDiscountCode';
+import useDiscountCode from '@/app/[locale]/portal/[popupSlug]/passes/hooks/useDiscountCode';
 import { useGroupsProvider } from './groupsProvider';
 
 interface TotalContext_interface {

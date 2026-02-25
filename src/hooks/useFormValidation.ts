@@ -1,4 +1,4 @@
-import useGetFields from '@/app/portal/[popupSlug]/application/hooks/useGetFields'
+import useGetFields from '@/app/[locale]/portal/[popupSlug]/application/hooks/useGetFields'
 import { dynamicForm } from '@/constants'
 import { validateVideoUrl } from '@/helpers/validate'
 import { useCityProvider } from '@/providers/cityProvider'

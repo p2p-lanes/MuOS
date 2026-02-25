@@ -1,4 +1,4 @@
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname, useRouter } from "@/i18n/navigation"
 import useResources from "../hooks/useResources"
 import { useEffect } from "react"
 

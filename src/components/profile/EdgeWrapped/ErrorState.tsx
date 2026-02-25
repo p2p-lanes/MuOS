@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { useTranslations } from "next-intl"
 
 interface ErrorStateProps {
   error: string | null
@@ -9,6 +10,8 @@ interface ErrorStateProps {
 }
 
 export const ErrorState = ({ error, onClose }: ErrorStateProps) => {
+  const t = useTranslations('profile')
+
   return (
     <motion.div
       key="error"
@@ -16,16 +19,15 @@ export const ErrorState = ({ error, onClose }: ErrorStateProps) => {
       animate={{ opacity: 1 }}
       className="flex flex-col items-center justify-center gap-4 text-center absolute inset-0 m-auto"
     >
-      <div className="text-red-500 text-xl font-bold">Something went wrong</div>
-      <p className="text-gray-500">{error || "Could not generate your map."}</p>
+      <div className="text-red-500 text-xl font-bold">{t('somethingWentWrong')}</div>
+      <p className="text-gray-500">{error || t('couldNotGenerateMap')}</p>
       <Button 
         onClick={onClose} 
         variant="outline"
-        aria-label="Close error dialog"
+        aria-label={t('close')}
       >
-        Close
+        {t('close')}
       </Button>
     </motion.div>
   )
 }
-

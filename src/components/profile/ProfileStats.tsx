@@ -6,15 +6,16 @@ import { useState } from "react"
 import { ProfileData } from "@/types/StatsSocialLayer"
 import { useEffect } from "react"
 import { Skeleton } from "../ui/skeleton"
+import { useTranslations } from "next-intl"
 
 const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
   const { getEventsFromEmail, eventsLoading, getProfileFromEmail, profileLoading } = useSocialLayer()
   const [events, setEvents] = useState<any>([])
   const [profile, setProfile] = useState<ProfileData | null>(null)
+  const t = useTranslations('profile')
 
   const currentDate = new Date()
 
-  // Filter only popups that have already ended
   const completedPopups = userData?.popups?.filter(popup => {
     const endDate = new Date(popup.end_date)
     return endDate < currentDate
@@ -62,16 +63,15 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
 
       <Card className="p-6 flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <h2 className="text-2xl font-semibold text-gray-900">Event Statitics</h2>
-          <p className="text-sm text-gray-600">Your event participation breakdown (from the Social Layer community calendar).</p>
+          <h2 className="text-2xl font-semibold text-gray-900">{t('eventStatistics')}</h2>
+          <p className="text-sm text-gray-600">{t('eventStatsDescription')}</p>
         </div>
 
         <Card className="p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <p className="text-md font-semibold text-gray-700">Events Hosted</p>
+              <p className="text-md font-semibold text-gray-700">{t('eventsHosted')}</p>
               {profileLoading ? (
-                //Skeleton
                 <Skeleton className="w-12 h-12 rounded-lg" />
               ) : (
                 <div className="px-[6px] py-[4px] bg-gray-100 rounded-md">
@@ -87,13 +87,13 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900 truncate">{event.title}</p>
                   <p className="text-xs text-gray-500 truncate">
-                    {event.participants.length} participant{event.participants.length !== 1 ? 's' : ''}
+                    {t('participant', { count: event.participants.length })}
                   </p>
                 </div>
               </div>
             ))}
             {(profile?.events?.length === 0 || !profile?.events) && !profileLoading && (
-              <p className="text-xs text-gray-400 italic">No events hosted yet</p>
+              <p className="text-xs text-gray-400 italic">{t('noEventsHosted')}</p>
             )}
           </div>
         </Card>
@@ -101,9 +101,8 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
         <Card className="p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <p className="text-md font-semibold text-gray-700">Events Attended</p>
+              <p className="text-md font-semibold text-gray-700">{t('eventsAttended')}</p>
               {eventsLoading ? (
-                //Skeleton
                 <Skeleton className="w-12 h-12 rounded-lg" />
               ) : (
                 <div className="px-[6px] py-[4px] bg-gray-100 rounded-md">
@@ -120,13 +119,13 @@ const ProfileStats = ({userData}: {userData: CitizenProfile | null}) => {
                   <p className="text-xs text-gray-500 truncate">
                     {event.location && event.location.length > 30
                       ? `${event.location.substring(0, 30)}...`
-                      : event.location || 'Location not specified'}
+                      : event.location || t('locationNotSpecified')}
                   </p>
                 </div>
               </div>
             ))}
             {events.length === 0 && !eventsLoading && (
-              <p className="text-xs text-gray-400 italic">No events attended yet</p>
+              <p className="text-xs text-gray-400 italic">{t('noEventsAttended')}</p>
             )}
           </div>
         </Card>

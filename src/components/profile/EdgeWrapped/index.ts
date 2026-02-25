@@ -5,7 +5,8 @@ export { ErrorState } from "./ErrorState"
 export { EdgeWrappedModal } from "./EdgeWrappedModal"
 export type { ModalStep } from "./EdgeWrappedModal"
 export { 
-  LOADING_MESSAGES, 
+  LOADING_MESSAGES,
+  LOADING_MESSAGES_COUNT, 
   MIN_LOADING_TIME_FIRST, 
   MIN_LOADING_TIME_RETURNING,
   UPDATE_FREQUENCY 

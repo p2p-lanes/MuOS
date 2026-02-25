@@ -1,8 +1,10 @@
 import { Button } from "../ui/button"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/i18n/navigation"
 import { useState } from "react"
 import { Medal, Newspaper, LogOut } from "lucide-react"
-import InvoiceModal from "@/app/portal/[popupSlug]/passes/components/common/InvoiceModal"
+import InvoiceModal from "@/app/[locale]/portal/[popupSlug]/passes/components/common/InvoiceModal"
+import { useTranslations } from "next-intl"
+
 import useAuthentication from "@/hooks/useAuthentication"
 import { SidebarTrigger } from "../Sidebar/SidebarComponents"
 
@@ -10,7 +12,7 @@ const HeaderProfile = () => {
   const router = useRouter()
   const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false)
   const { logout } = useAuthentication()
-
+  const t = useTranslations('profile')
 
   return (
     <div className="p-4 md:p-6 border-b border-gray-200 bg-white">
@@ -18,21 +20,18 @@ const HeaderProfile = () => {
           <div className="flex items-center gap-2">
             <SidebarTrigger className="xl:hidden" />
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">My Profile</h1>
-              <p className="text-gray-600">Manage your The Mu experience and history</p>
+              <h1 className="text-2xl font-bold text-gray-900">{t('myProfile')}</h1>
+              <p className="text-gray-600">{t('manageExperience')}</p>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <Button variant="outline" className="text-gray-700 border-gray-300 bg-transparent" onClick={ () => router.push('/portal/poaps')}>
               <Medal className="mr-2 size-4" />
-              My Collectibles
+              {t('myCollectibles')}
             </Button>
-            {/* <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 bg-transparent">
-              My Referrals
-            </Button> */}
             <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 bg-transparent" onClick={() => setIsInvoiceModalOpen(true)}>
               <Newspaper className="h-4 w-4" />
-              Invoices
+              {t('invoices')}
             </Button>
             <InvoiceModal isOpen={isInvoiceModalOpen} onClose={() => setIsInvoiceModalOpen(false)} />
             

@@ -10,6 +10,7 @@ import Modal from '@/components/ui/modal';
 import { Mail } from 'lucide-react';
 import { api, instance } from '@/api';
 import useGetProfile from '@/hooks/useGetProfile';
+import { useTranslations } from 'next-intl';
 
 type ModalStep = 'email' | 'verification' | 'success';
 
@@ -32,6 +33,7 @@ export default function MergeEmails() {
   const [error, setError] = useState<string | null>(null);
   const [requestId, setRequestId] = useState<number | null>(null);
   const codeInputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const t = useTranslations('profile');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -73,12 +75,12 @@ export default function MergeEmails() {
     setError(null);
 
     if (!email.trim()) {
-      setError('Please enter an email address');
+      setError(t('pleaseEnterEmail'));
       return;
     }
 
     if (!validateEmail(email)) {
-      setError('Please enter a valid email address');
+      setError(t('pleaseEnterValidEmail'));
       return;
     }
 
@@ -86,7 +88,7 @@ export default function MergeEmails() {
       profile?.primary_email &&
       email.toLowerCase() === profile.primary_email.toLowerCase()
     ) {
-      setError('Cannot link account to itself');
+      setError(t('cannotLinkSelf'));
       return;
     }
 
@@ -104,15 +106,14 @@ export default function MergeEmails() {
         setError(null);
       } else {
         const errorMessage =
-          response?.data?.detail ||
-          'Failed to send verification code. Please try again.';
+          response?.data?.detail || t('failedSendCode');
         setError(errorMessage);
       }
     } catch (err: any) {
       const errorMessage =
         err?.response?.data?.detail ||
         err?.message ||
-        'Failed to send verification code. Please try again.';
+        t('failedSendCode');
       setError(errorMessage);
     } finally {
       setIsLoading(false);
@@ -157,7 +158,7 @@ export default function MergeEmails() {
     const code = verificationCode.join('');
 
     if (code.length !== 6) {
-      setError('Please enter the complete 6-digit code');
+      setError(t('enterCompleteCode'));
       return;
     }
 
@@ -174,7 +175,7 @@ export default function MergeEmails() {
         setError(null);
       } else {
         const errorMessage =
-          response?.data?.detail || 'Invalid verification code';
+          response?.data?.detail || t('invalidCode');
         setError(errorMessage);
         setVerificationCode(['', '', '', '', '', '']);
         codeInputRefs.current[0]?.focus();
@@ -183,7 +184,7 @@ export default function MergeEmails() {
       const errorMessage =
         err?.response?.data?.detail ||
         err?.message ||
-        'Invalid verification code';
+        t('invalidCode');
       setError(errorMessage);
       setVerificationCode(['', '', '', '', '', '']);
       codeInputRefs.current[0]?.focus();
@@ -231,15 +232,14 @@ export default function MergeEmails() {
         setError(null);
       } else {
         const errorMessage =
-          response?.data?.detail ||
-          'Failed to resend verification code. Please try again.';
+          response?.data?.detail || t('failedResendCode');
         setError(errorMessage);
       }
     } catch (err: any) {
       const errorMessage =
         err?.response?.data?.detail ||
         err?.message ||
-        'Failed to resend verification code. Please try again.';
+        t('failedResendCode');
       setError(errorMessage);
     } finally {
       setIsLoading(false);
@@ -250,7 +250,7 @@ export default function MergeEmails() {
     <div className='space-y-4'>
       <div className='space-y-2'>
         <Label htmlFor='email' className='text-sm font-semibold text-gray-900'>
-          Email Address
+          {t('emailAddress')}
         </Label>
         <Input
           id='email'
@@ -282,14 +282,14 @@ export default function MergeEmails() {
           onClick={handleInitiateLink}
           className='bg-[hsl(222,47%,11%)] hover:bg-[hsl(222,47%,15%)] text-white rounded-lg w-full py-2.5 px-4 h-auto font-normal'
           disabled={isLoading || !email.trim()}>
-          {isLoading ? 'Sending...' : 'Send Verification Code'}
+          {isLoading ? t('sending') : t('sendVerificationCode')}
         </Button>
         <Button
           variant='outline'
           onClick={handleClose}
           disabled={isLoading}
           className='bg-white border border-gray-300 text-gray-900 hover:bg-gray-50 rounded-lg w-full py-2.5 px-4 h-auto font-normal'>
-          Done
+          {t('done')}
         </Button>
       </div>
     </div>
@@ -299,7 +299,7 @@ export default function MergeEmails() {
     <>
       <div className='space-y-2'>
         <div className='text-sm'>
-          <div className='text-gray-600'>Enter the code we sent to</div>
+          <div className='text-gray-600'>{t('enterCodeSentTo')}</div>
           <div className='font-semibold text-gray-900 mt-1'>{targetEmail}</div>
         </div>
 
@@ -337,12 +337,12 @@ export default function MergeEmails() {
 
         {timeRemaining > 0 ? (
           <div className='text-sm text-gray-600 text-center py-1'>
-            Code expires in:{' '}
+            {t('codeExpiresIn')}{' '}
             <span className='font-semibold'>{formatTime(timeRemaining)}</span>
           </div>
         ) : (
           <div className='text-sm text-red-600 text-center py-1'>
-            Code has expired. Please request a new code.
+            {t('codeExpired')}
           </div>
         )}
 
@@ -358,7 +358,7 @@ export default function MergeEmails() {
             onClick={handleResendCode}
             disabled={isLoading}
             className='w-full'>
-            {isLoading ? 'Sending...' : 'Resend Code'}
+            {isLoading ? t('sending') : t('resendCode')}
           </Button>
         )}
 
@@ -371,14 +371,14 @@ export default function MergeEmails() {
               verificationCode.join('').length !== 6 ||
               timeRemaining === 0
             }>
-            {isLoading ? 'Verifying...' : 'Verify Code'}
+            {isLoading ? t('verifying') : t('verifyCode')}
           </Button>
           <Button
             variant='outline'
             onClick={handleBack}
             disabled={isLoading}
             className='bg-white border border-gray-300 text-gray-900 hover:bg-gray-50 rounded-lg w-full py-2.5 px-4 h-auto font-normal'>
-            Back
+            {t('back')}
           </Button>
         </div>
       </div>
@@ -390,17 +390,16 @@ export default function MergeEmails() {
       <div className='space-y-4 mt-4 text-center'>
         <div className='text-4xl mb-4'>✓</div>
         <h3 className='text-xl font-semibold text-gray-900'>
-          Accounts Linked Successfully!
+          {t('accountsLinkedSuccess')}
         </h3>
         <p className='text-sm text-gray-600'>
-          Your accounts are now linked. Your profile now shows combined data
-          from both accounts.
+          {t('accountsLinkedDescription')}
         </p>
         <div className='pt-4'>
           <Button
             onClick={handleClose}
             className='bg-[#020817] hover:bg-[#020817]/90 text-white'>
-            Close
+            {t('close')}
           </Button>
         </div>
       </div>
@@ -423,26 +422,26 @@ export default function MergeEmails() {
   const getModalTitle = () => {
     switch (step) {
       case 'email':
-        return 'Merge Email Accounts';
+        return t('mergeEmailAccountsTitle');
       case 'verification':
-        return 'Merge Email Accounts';
+        return t('mergeEmailAccountsTitle');
       case 'success':
-        return 'Success';
+        return t('success');
       default:
-        return 'Merge Email Accounts';
+        return t('mergeEmailAccountsTitle');
     }
   };
 
   const getModalDescription = () => {
     switch (step) {
       case 'email':
-        return 'Add email addresses to combine your statistics across all accounts.';
+        return t('mergeEmailDescription');
       case 'verification':
         return undefined;
       case 'success':
         return undefined;
       default:
-        return 'Add email addresses to combine your statistics across all accounts.';
+        return t('mergeEmailDescription');
     }
   };
 
@@ -452,7 +451,7 @@ export default function MergeEmails() {
         <Badge
           variant='secondary'
           className='absolute top-4 right-4 px-2 py-0.5 bg-blue-100 text-blue-800 hover:bg-blue-100 border-none md:hidden'>
-          new
+          {t('new')}
         </Badge>
         <div className='flex flex-col md:flex-row md:items-center items-start text-left justify-between gap-6'>
           <div className='flex flex-col md:flex-row items-start gap-4 flex-1 pr-12 md:pr-0'>
@@ -462,17 +461,16 @@ export default function MergeEmails() {
             <div className='flex flex-col items-start'>
               <div className='flex flex-wrap items-center gap-2 mb-1'>
                 <h3 className='text-lg font-semibold text-[#020817] leading-tight'>
-                  Combine your The Mu metrics
+                  {t('combineMetrics')}
                 </h3>
                 <Badge
                   variant='secondary'
                   className='hidden md:inline-flex px-2 py-0.5 bg-blue-100 text-blue-800 hover:bg-blue-100 border-none'>
-                  new
+                  {t('new')}
                 </Badge>
               </div>
               <p className='text-sm text-[#64748b] max-w-[400px] md:max-w-none'>
-                Connect multiple emails to see combined stats across all your The Mu
-                City activity.
+                {t('combineMetricsDescription')}
               </p>
             </div>
           </div>
@@ -480,7 +478,7 @@ export default function MergeEmails() {
             <Button
               onClick={() => setIsModalOpen(true)}
               className='bg-[#020817] hover:bg-[#020817]/90 text-white w-full md:w-auto rounded-lg h-auto py-2.5 px-5 whitespace-nowrap'>
-              Merge email accounts
+              {t('mergeEmailAccounts')}
             </Button>
           </div>
         </div>

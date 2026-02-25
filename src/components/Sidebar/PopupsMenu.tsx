@@ -8,8 +8,10 @@ import { ChevronsUpDown } from 'lucide-react'
 import { DropdownMenuContent, DropdownMenuItem } from "./DropdownMenu"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 const PopupsMenu = ({ handleClickCity }: { handleClickCity: (city: PopupsProps) => void }) => {
+  const t = useTranslations('sidebar')
   const { getCity, getPopups } = useCityProvider()
   const city = getCity()
   const popups = getPopups()
@@ -64,7 +66,7 @@ const PopupsMenu = ({ handleClickCity }: { handleClickCity: (city: PopupsProps) 
                       <span>{popup.name}</span>
                       {
                         !popup.clickable_in_portal && (
-                          <span className="ml-auto text-xs bg-muted text-muted-foreground px-1.5 py-0.5 rounded-md">Soon</span>
+                          <span className="ml-auto text-xs bg-muted text-muted-foreground px-1.5 py-0.5 rounded-md">{t('soon')}</span>
                         )
                       }
                     </DropdownMenuItem>

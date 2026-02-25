@@ -5,9 +5,11 @@ import { SidebarMenu, SidebarMenuItem, SidebarFooter } from "./SidebarComponents
 
 import { User as UserType } from "@/types/User"
 import PoapMint from "./Poap/PoapMint"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
+import { useTranslations } from "next-intl"
 
 const FooterMenu = ({handleLogout, user}: {handleLogout: () => void, user: UserType}) => {
+  const t = useTranslations('sidebar')
   const [stars, setStars] = useState<number | null>(null)
   const repoUrl = "https://github.com/p2p-lanes/EdgeOS"
 
@@ -59,7 +61,7 @@ const FooterMenu = ({handleLogout, user}: {handleLogout: () => void, user: UserT
               <div className="flex items-center gap-4 p-2 px-4 hover:bg-gray-100 hover:text-gray-700 text-muted-foreground rounded-lg transition-colors cursor-pointer mb-4 mt-4">
                 <User className="w-4 h-4" />
                 <span className="text-sm font-medium">
-                  My Profile
+                  {t('myProfile')}
                 </span>
               </div>
             </Link>

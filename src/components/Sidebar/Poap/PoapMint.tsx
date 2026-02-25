@@ -1,9 +1,11 @@
 import { ArrowRight } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { usePoapsProvider } from '@/providers/poapsProvider';
 import { PoapProps } from '@/types/Poaps';
+import { useTranslations } from 'next-intl';
 
 const PoapMint = () => {
+  const t = useTranslations('sidebar');
   const router = useRouter();
   const { poaps, loading } = usePoapsProvider();
 
@@ -18,7 +20,7 @@ const PoapMint = () => {
       <div className='group-data-[collapsible=icon]:hidden bg-white hover:bg-gradient-to-r hover:from-[#FF8181]/10 hover:to-[#DE00F1]/10 rounded-lg rounded-r-none w-full h-full flex items-center gap-2 justify-center'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={'https://simplefi.s3.us-east-2.amazonaws.com/logo_base.png'} alt='poap' width={18} height={18} />
-        <p className='text-xs font-bold'>You have POAPs to mint!</p>
+        <p className='text-xs font-bold'>{t('poapsToMint')}</p>
       </div>
       <div className='bg-gradient-to-r from-[#FF8181] to-[#DE00F1] w-10 h-8 flex items-center justify-center rounded-r-lg'>
         <ArrowRight className='w-4 h-4 text-white' />

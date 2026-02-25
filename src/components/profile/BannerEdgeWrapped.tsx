@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button"
 import { useGetEdgeWrapped } from "@/hooks/useGetEdgeWrapped"
 import { 
   EdgeWrappedModal, 
-  LOADING_MESSAGES, 
+  LOADING_MESSAGES_COUNT, 
   MIN_LOADING_TIME_FIRST, 
   MIN_LOADING_TIME_RETURNING,
   type ModalStep 
 } from "./EdgeWrapped"
+import { useTranslations } from "next-intl"
 
 interface BannerEdgeWrappedProps {
   edgeMappedSent?: boolean
@@ -30,6 +31,7 @@ export default function BannerEdgeWrapped({
   const [minTimePassed, setMinTimePassed] = useState(false)
   
   const { data: imageUrl, error, fetchWrapped, reset } = useGetEdgeWrapped()
+  const t = useTranslations('profile')
   
   const fetchStartedRef = useRef(false)
   const hasCalledOnImageGeneratedRef = useRef(false)
@@ -57,7 +59,7 @@ export default function BannerEdgeWrapped({
         fetchWrapped()
       }
 
-      const messageIntervalTime = minLoadingTime / LOADING_MESSAGES.length
+      const messageIntervalTime = minLoadingTime / LOADING_MESSAGES_COUNT
 
       minTimeTimer = setTimeout(() => {
         setMinTimePassed(true)
@@ -65,7 +67,7 @@ export default function BannerEdgeWrapped({
 
       messageInterval = setInterval(() => {
         setMessageIndex((prev) => {
-          if (prev >= LOADING_MESSAGES.length - 1) {
+          if (prev >= LOADING_MESSAGES_COUNT - 1) {
             return prev
           }
           return prev + 1
@@ -120,11 +122,10 @@ export default function BannerEdgeWrapped({
     setIsOpen(true)
   }
 
-  // Dynamic content based on edgeMappedSent
-  const title = edgeMappedSent ? "See My The Mu Mapped" : "Get Your The Mu Mapped"
+  const title = edgeMappedSent ? t('seeMyMapped') : t('getYourMapped')
   const subtitle = edgeMappedSent 
     ? null 
-    : "Discover your lifetime activity at The Mu and get your custom island!"
+    : t('discoverActivity')
 
   if(!showBanner) return null
 
@@ -178,7 +179,7 @@ export default function BannerEdgeWrapped({
               className="w-full md:w-auto bg-white text-black hover:bg-white/90 font-semibold text-base md:text-lg px-6 md:px-8 transition-transform hover:scale-105 active:scale-95"
               aria-label={title}
             >
-              Let&apos;s go!
+              {t('letsGo')}
             </Button>
           </div>
 

@@ -9,6 +9,7 @@ import { useApplication } from "@/providers/applicationProvider"
 import { useCityProvider } from "@/providers/cityProvider"
 import { usePoapsProvider } from "@/providers/poapsProvider"
 import { PoapProps } from "@/types/Poaps"
+import { useTranslations } from "next-intl"
 
 type ApplicationStatus = "draft" | "in review" | "accepted" | "rejected"
 
@@ -21,6 +22,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
   const { applications } = useApplication()
   const { getPopups } = useCityProvider()
   const allPopups = getPopups()
+  const t = useTranslations('profile')
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -36,47 +38,43 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
     const end = new Date(endDate)
 
     if (now > end) {
-      return { label: "Completed", className: "bg-green-100 text-green-800" }
+      return { label: t('completed'), className: "bg-green-100 text-green-800" }
     }
     if (now >= start && now <= end) {
-      return { label: "In progress", className: "bg-blue-100 text-blue-800" }
+      return { label: t('inProgress'), className: "bg-blue-100 text-blue-800" }
     }
-    return { label: "Upcoming", className: "bg-gray-100 text-gray-800" }
+    return { label: t('upcoming'), className: "bg-gray-100 text-gray-800" }
   }
 
   const getApplicationStatusBadge = (status?: string) => {
     switch(status) {
       case "accepted":
-        return { label: "Application Approved", className: "bg-green-100 text-green-800" }
+        return { label: t('applicationApproved'), className: "bg-green-100 text-green-800" }
       case "in review":
-        return { label: "Application Submitted", className: "bg-blue-100 text-blue-800" }
+        return { label: t('applicationSubmitted'), className: "bg-blue-100 text-blue-800" }
       case "draft":
-        return { label: "Application Draft", className: "bg-gray-100 text-gray-800" }
+        return { label: t('applicationDraft'), className: "bg-gray-100 text-gray-800" }
       default:
-        return { label: "Upcoming", className: "bg-gray-100 text-gray-800" }
+        return { label: t('upcoming'), className: "bg-gray-100 text-gray-800" }
     }
   }
 
   const getMainPoapForPopup = (popupName: string): PoapProps | null => {
-    // Find the popup in poapsWithPopup by popup_name
     const poapResponse = poapsWithPopup?.find(p => p.popup_name === popupName)
 
     if (!poapResponse || !poapResponse.poaps || poapResponse.poaps.length === 0) {
       return null
     }
 
-    // Find the first poap with attendee_category = 'main'
     const mainPoap = poapResponse.poaps.find(poap => poap.attendee_category === 'main')
 
     return mainPoap || null
   }
 
-  // Filter applications where ALL attendees have NO products
   const applicationsWithoutProducts = applications?.filter(app =>
     app.attendees.every(attendee => attendee.products.length >= 0)
   ) ?? []
 
-  // Map applications to popup data for upcoming popups with application status
   const upcomingPopupsFromApplications = applicationsWithoutProducts
     .map(app => {
       const popup = allPopups.find(p => p.id === app.popup_city_id)
@@ -86,15 +84,15 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
         popup_name: popup.name,
         start_date: popup.start_date,
         end_date: popup.end_date,
-        total_days: 0, // This could be calculated if needed
+        total_days: 0,
         location: popup.location,
         image_url: popup.image_url,
-        application_status: app.status // Include application status
+        application_status: app.status
       } as PopupWithApplicationStatus
     })
     .filter((p): p is PopupWithApplicationStatus => p !== null)
-    .filter(popup => new Date(popup.end_date) > new Date()) // Only show upcoming events
-    .sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime()) // Sort by most recent first
+    .filter(popup => new Date(popup.end_date) > new Date())
+    .sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime())
 
   const pastPopups = popups
     .filter((popup) => new Date(popup.end_date) < new Date())
@@ -108,23 +106,23 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
   return (
     <Card className="p-6">
       <div className="mb-4">
-        <h2 className="text-xl font-semibold text-gray-900">Pop-Ups</h2>
-        <p className="text-sm text-gray-600">Your upcoming and past Pop-Ups</p>
+        <h2 className="text-xl font-semibold text-gray-900">{t('popUps')}</h2>
+        <p className="text-sm text-gray-600">{t('upcomingAndPastPopUps')}</p>
       </div>
 
       <div className="py-2">
         <div className="space-y-6">
           {popups.length === 0 && (
-            <div className="text-center text-gray-600 p-4">No events found</div>
+            <div className="text-center text-gray-600 p-4">{t('noEventsFound')}</div>
           )}
           <div className="flex items-center gap-2 mb-4">
             <Calendar className="w-6 h-6 text-foreground" />
-            <h4 className="text-md font-semibold text-foreground">Upcoming Pop-Ups</h4>
+            <h4 className="text-md font-semibold text-foreground">{t('upcomingPopUps')}</h4>
           </div>
           <div className="space-y-4">
             {
               upcomingPopupsFromApplications.length === 0 && (
-                <div className="text-center text-gray-600 p-4">No upcoming events found</div>
+                <div className="text-center text-gray-600 p-4">{t('noUpcomingEvents')}</div>
               )
             }
             {upcomingPopupsFromApplications.map((popup, index) => (
@@ -168,21 +166,18 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Clock className="w-6 h-6 text-foreground" />
-              <h4 className="text-md font-semibold text-foreground">Past Pop-Ups</h4>
+              <h4 className="text-md font-semibold text-foreground">{t('pastPopUps')}</h4>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {
                 pastPopups.length === 0 && (
-                  <div className="text-center text-gray-600 p-4 col-span-3">No past events found</div>
+                  <div className="text-center text-gray-600 p-4 col-span-3">{t('noPastEvents')}</div>
                 )
               }
               {pastPopups.map((popup) => (
                 <Card key={popup.popup_name} className="p-4">
                   <div className="relative mb-3">
                     <Image src={popup.image_url || "/placeholder.svg"} alt={popup.popup_name} width={160} height={160} className="w-full h-auto max-h-[140px] object-cover rounded-lg aspect-auto object-top" />
-                    {/* <div className="absolute top-2 left-2 bg-[#dcfce7] text-[#166534] px-2 py-1 rounded text-xs font-medium">
-                      Completed
-                    </div> */}
                   </div>
                   <div>
                     <h5 className="text-lg font-semibold text-black mb-2">{popup.popup_name}</h5>
@@ -200,7 +195,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
 
                       <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4 text-black" />
-                        <span className="text-sm">{popup.total_days} days attended</span>
+                        <span className="text-sm">{t('daysAttended', { days: popup.total_days })}</span>
                       </div>
 
                     </div>
@@ -210,7 +205,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
                       if (!mainPoap) return null
 
                       const isClaimed = mainPoap.poap_claimed
-                      const buttonText = isClaimed ? "Go to POAP" : "Mint POAP"
+                      const buttonText = isClaimed ? t('goToPoap') : t('mintPoap')
 
                       return (
                         <div onClick={() => window.open(mainPoap.poap_url, '_blank')} className="w-full p-2 flex justify-center items-center gap-3 bg-gray-100 rounded-sm h-[42px] hover:bg-gray-200 cursor-pointer">

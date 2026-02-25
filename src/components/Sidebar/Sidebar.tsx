@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/i18n/navigation"
 import { useCityProvider } from "@/providers/cityProvider"
 import useAuthentication from "@/hooks/useAuthentication"
 import PopupsMenu from "./PopupsMenu"

@@ -2,13 +2,23 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { EdgeLand } from "@/components/Icons/EdgeLand"
-import { LOADING_MESSAGES } from "./constants"
+import { useTranslations } from "next-intl"
 
 interface LoadingStateProps {
   messageIndex: number
 }
 
 export const LoadingState = ({ messageIndex }: LoadingStateProps) => {
+  const t = useTranslations('profile')
+
+  const loadingMessages = [
+    t('loadingMsg1'),
+    t('loadingMsg2'),
+    t('loadingMsg3'),
+    t('loadingMsg4'),
+    t('loadingMsg5'),
+  ]
+
   return (
     <motion.div
       key="loading"
@@ -35,7 +45,6 @@ export const LoadingState = ({ messageIndex }: LoadingStateProps) => {
         <div className="relative z-10 scale-[2] text-black">
           <EdgeLand />
         </div>
-        {/* Sun/Orbit effect */}
         <motion.div
           className="absolute w-full h-full border border-dashed border-gray-300 rounded-full"
           animate={{ rotate: 360 }}
@@ -47,10 +56,9 @@ export const LoadingState = ({ messageIndex }: LoadingStateProps) => {
 
       <div className="flex flex-col items-center gap-4 w-full">
         <h3 className="text-xl font-bold text-black tracking-wide uppercase">
-          Construction in Progress
+          {t('constructionInProgress')}
         </h3>
 
-        {/* Message Cycler */}
         <div className="h-6 overflow-hidden relative w-full flex justify-center">
           <AnimatePresence mode="wait">
             <motion.p
@@ -60,7 +68,7 @@ export const LoadingState = ({ messageIndex }: LoadingStateProps) => {
               exit={{ y: -20, opacity: 0 }}
               className="text-sm font-mono text-gray-500 uppercase tracking-widest absolute"
             >
-              {LOADING_MESSAGES[messageIndex]}
+              {loadingMessages[messageIndex]}
             </motion.p>
           </AnimatePresence>
         </div>
@@ -68,4 +76,3 @@ export const LoadingState = ({ messageIndex }: LoadingStateProps) => {
     </motion.div>
   )
 }
-

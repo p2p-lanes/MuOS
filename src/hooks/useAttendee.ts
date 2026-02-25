@@ -4,8 +4,10 @@ import { useState } from "react"
 import { CreateAttendee } from "@/types/Attendee"
 import { useApplication } from "@/providers/applicationProvider"
 import { toast } from "sonner"
+import { useTranslations } from "next-intl"
 
 const useAttendee = () => {
+  const t = useTranslations('common')
   const [loading, setLoading] = useState(false)
   const { getRelevantApplication, updateApplication } = useApplication()
   const application = getRelevantApplication()
@@ -26,11 +28,11 @@ const useAttendee = () => {
       console.error('Error adding attendee:', error)
       // Manejar diferentes tipos de errores
       if (error instanceof TypeError && error.message.includes('fetch')) {
-        toast.error("Network error. Please check your connection and try again.")
+        toast.error(t('networkError'))
       } else if (error instanceof Error && error.name === 'AbortError') {
-        toast.error("Request timeout. Please try again.")
+        toast.error(t('requestTimeout'))
       } else {
-        toast.error("Unknown error, please try again later")
+        toast.error(t('unknownError'))
       }
     } finally {
       setLoading(false)
@@ -52,11 +54,11 @@ const useAttendee = () => {
     } catch (error) {
       // Manejar diferentes tipos de errores
       if (error instanceof TypeError && error.message.includes('fetch')) {
-        toast.error("Network error. Please check your connection and try again.")
+        toast.error(t('networkError'))
       } else if (error instanceof Error && error.name === 'AbortError') {
-        toast.error("Request timeout. Please try again.")
+        toast.error(t('requestTimeout'))
       } else {
-        toast.error("Unknown error, please try again later")
+        toast.error(t('unknownError'))
       }
     } finally {
       setLoading(false)
@@ -78,11 +80,11 @@ const useAttendee = () => {
     } catch (error) {
       // Manejar diferentes tipos de errores
       if (error instanceof TypeError && error.message.includes('fetch')) {
-        toast.error("Network error. Please check your connection and try again.")
+        toast.error(t('networkError'))
       } else if (error instanceof Error && error.name === 'AbortError') {
-        toast.error("Request timeout. Please try again.")
+        toast.error(t('requestTimeout'))
       } else {
-        toast.error("Unknown error, please try again later")
+        toast.error(t('unknownError'))
       }
     } finally {
       setLoading(false)
