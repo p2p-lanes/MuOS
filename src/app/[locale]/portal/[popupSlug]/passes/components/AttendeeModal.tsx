@@ -109,7 +109,7 @@ export function AttendeeModal({ onSubmit, open, onClose, category, editingAttend
       <Modal
         open={open}
         onClose={onClose}
-        title={t('attendeeModal.deleteTitle', { name: editingAttendee?.name })}
+        title={t('attendeeModal.deleteTitle', { name: editingAttendee?.name ?? '' })}
         description={t('attendeeModal.deleteConfirm', { category })}
       >
         <DialogFooter>

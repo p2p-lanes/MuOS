@@ -155,7 +155,7 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout, onSwitchToBuy}:
             ) : (!toggleProduct && !hasPurchased) ? (
               <div className="flex w-full h-full justify-center items-center p-4">
                 <p className="text-sm font-medium text-neutral-500 text-center">
-                  {t('attendeeTicket.noPasses', { city: city?.name })}{" "}
+                  {t('attendeeTicket.noPasses', { city: city?.name ?? '' })}{" "}
                   <span
                     onClick={onSwitchToBuy}
                     className="text-primary hover:underline cursor-pointer font-semibold"
