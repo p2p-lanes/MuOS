@@ -130,12 +130,7 @@ export default function ProfileContent() {
       {/* Profile Content */}
       <div className="flex-1 p-6 bg-neutral-100">
         <div className="max-w-5xl mx-auto space-y-6">
-          {/* Banner Edge Wrapped */}
-          <BannerEdgeWrapped
-            edgeMappedSent={userData?.edge_mapped_sent}
-            onImageGenerated={handleEdgeMappedGenerated}
-            showBanner={(userData?.total_days && userData?.total_days > 0) ? true : false}
-          />
+          
 
           {/* <MergeEmails /> */}
 

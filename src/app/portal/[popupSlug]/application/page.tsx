@@ -23,7 +23,6 @@ import { useRouter } from "next/navigation"
 import AccomodationForm from "./components/AccomodationForm"
 import { useApplication } from "@/providers/applicationProvider"
 import useGetFields from "./hooks/useGetFields"
-import PatagoniaResidenciesForm from "./components/PatagoniaResidenciesForm"
 import { FormInputWrapper } from "@/components/ui/form-input-wrapper"
 import { Label } from "@/components/ui/label"
 import { MultiSelect } from "@/components/ui/MultiSelect"
@@ -110,7 +109,7 @@ export default function FormPage() {
 
         <ParticipationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
 
-        <PatagoniaResidenciesForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+        {/* <PatagoniaResidenciesForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/> */}
 
         <ChildrenPlusOnesForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
 

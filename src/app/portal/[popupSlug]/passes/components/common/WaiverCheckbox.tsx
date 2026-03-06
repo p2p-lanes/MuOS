@@ -13,17 +13,18 @@ const WaiverCheckbox = ({ checked, onCheckedChange, className }: WaiverCheckboxP
   return (
     <TooltipProvider>
       <div className={`flex items-start space-x-2 ${className || ''}`}>
-        <Checkbox
+        {/* <Checkbox
           id="waiver-agreement"
           checked={checked}
           onCheckedChange={onCheckedChange}
           className="mt-1"
-        />
+        /> */}
         <div className="flex items-start space-x-2 flex-1">
           <Label 
             htmlFor="waiver-agreement" 
             className="text-xs text-muted-foreground mt-1 cursor-pointer"
           >
+            {/* Waiver and Release of Liability - not required for purchase (commented out)
             I acknowledge the risks involved and{" "}
             <a 
               href="https://waiver.smartwaiver.com/w/mp89nnv4h2ukzm3fhlkca/web/" 
@@ -33,7 +34,9 @@ const WaiverCheckbox = ({ checked, onCheckedChange, className }: WaiverCheckboxP
             >
               agree to the Waiver and Release of Liability.
             </a>
+            */}
           </Label>
+          {/* Tooltip with waiver info - not required for purchase (commented out)
           <Tooltip>
             <TooltipTrigger asChild>
               <Info 
@@ -49,6 +52,7 @@ const WaiverCheckbox = ({ checked, onCheckedChange, className }: WaiverCheckboxP
               I understand that participating in this event involves inherent risks, including the possibility of injury or loss. By checking this box, I confirm that I have read and agree to the Waiver and Release of Liability, and I voluntarily accept these risks and release the organizers from any claims related to my participation.
             </TooltipContent>
           </Tooltip>
+          */}
         </div>
       </div>
     </TooltipProvider>

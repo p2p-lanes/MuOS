@@ -36,7 +36,8 @@ const parseMarkdown = (markdown: string) => {
 const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, defaultOpenDiscount = false, positionCoupon = 'bottom'}: {floatingBar?: boolean, viewInvoices?: boolean, canEdit?: boolean, defaultOpenDiscount?: boolean, positionCoupon?: 'top' | 'bottom' | 'right'}) => {
   const { toggleProduct, attendeePasses: attendees, products, isEditing} = usePassesProvider()
   const [openCart, setOpenCart] = useState<boolean>(false)
-  const [waiverAccepted, setWaiverAccepted] = useState<boolean>(false)
+  // Waiver is not required for purchase - default to true so checkout is never blocked
+  const [waiverAccepted, setWaiverAccepted] = useState<boolean>(true)
   const searchParams = useSearchParams();
   const isDayCheckout = searchParams.has("day-passes");
   const mainAttendee = attendees.find(a => a.category === 'main')

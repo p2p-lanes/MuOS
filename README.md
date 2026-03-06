@@ -11,8 +11,6 @@ We hope that builders and companies within the pop-up city movement will recogni
 ---
 
 ## How to run locally
-
-1. (Optional) Clone and run the backend locally from [EdgeOS_API](https://github.com/p2p-lanes/EdgeOS_API)
 2. Install dependencies and start the frontend:
 ```bash
 npm install
@@ -92,7 +90,7 @@ The administrative system, based on **NocoDB**, allows organizers to manage all 
 - Management of database tables with the ability for staff users to create filtered views for their convenience.
 
 ### Backend API
-The system's backend ([EdgeOS_API](https://github.com/p2p-lanes/EdgeOS_API)) serves as the **core infrastructure**, connecting the user portal with the backoffice. Its main functions include:
+ serves as the **core infrastructure**, connecting the user portal with the backoffice. Its main functions include:
 - Business logic management and process validation to ensure data consistency.
 - Integration with **NocoDB** and the **PostgreSQL** database for efficient data handling.
 - Payment processing via **Stripe** and **cryptocurrencies**, ensuring secure transactions and ticket issuance.
