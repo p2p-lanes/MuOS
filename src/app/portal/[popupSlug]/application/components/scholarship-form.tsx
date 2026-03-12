@@ -45,10 +45,9 @@ export function ScholarshipForm({ formData, errors, handleChange, fields }: Sect
   return (
     <>
       <SectionWrapper 
-        title={`muShanghai Scholarship`} 
+        title={`muShanghai Scholarship (For Students ONLY)`} 
         subtitle={
-          form?.scholarship?.subtitle ?? `Fill out this section if you are interested in securing one of a limited number of scholarships for ${city?.name}. 
-          We are prioritizing scholars who apply for the full experience${startDate && endDate ? ` (${startDate} - ${endDate}).` : '.'}`
+          'Fill out this section if you are interested in securing one of a limited number of scholarships for muShanghai. We are prioritizing scholars who apply for the full experience (May 10 - June 6, 2026).'
         }
       >  
 
