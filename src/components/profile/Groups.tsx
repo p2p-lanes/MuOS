@@ -56,7 +56,7 @@ const Groups = () => {
                   <p className="text-sm text-gray-600 font-medium">{group.popup_name}</p>
                   <Badge variant={'outline'} className="w-fit mt-1">{group.is_ambassador_group ? 'Ambassador' : 'Group'}</Badge>
                 </div>
-                <ButtonCopyLink group={group} popups={popups} isPopupActive={isPopupActive}/>
+                {/* <ButtonCopyLink group={group} popups={popups} isPopupActive={isPopupActive}/> */}
               </div>
             </Card>
             )

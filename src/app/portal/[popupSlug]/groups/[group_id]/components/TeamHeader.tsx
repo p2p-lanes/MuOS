@@ -130,7 +130,7 @@ const TeamHeader = ({ totalMembers, group, onMemberAdded, onGroupUpdated }: Team
             )
           }
           
-          <Button
+          {/* <Button
             onClick={handleCopyCheckoutLink}
             
           >
@@ -143,7 +143,7 @@ const TeamHeader = ({ totalMembers, group, onMemberAdded, onGroupUpdated }: Team
                 <Copy className="w-4 h-4" /> { isAmbassadorGroup ? 'Copy Referral Link' : 'Copy Express Checkout Link'}
               </>
             )}
-          </Button>
+          </Button> */}
 
           {/* {isAmbassadorGroup && (
             <Button
